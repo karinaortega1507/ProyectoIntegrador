@@ -1,0 +1,7 @@
+{
+  "name": "feminicide",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
