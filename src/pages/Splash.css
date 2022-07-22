@@ -1,0 +1,35 @@
+ion-label {
+    color:  #B047CF;
+    font-weight: bold;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    font-style: normal;
+  }
+
+  ion-content {
+    --background:  var(--ion-background-color, #F2F2F2);
+    
+  }
+
+  .center {
+    font-size: 40px;
+    position: absolute;
+    margin-top: 35%;
+    margin-left: 23%;
+    margin-right: 25%;
+  }
+  .img-center{
+    position: absolute;
+    width: 324px;
+    height: 330.96px;
+    left: 47px;
+    top: 252px;
+  }
+  .inf-center{
+    font-size: 30px;
+    position: absolute;
+    width: 332px;
+    height: 56px;
+    left: 115px;
+    top: 663px;
+  }
