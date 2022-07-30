@@ -1,4 +1,5 @@
 import {
+  IonAvatar,
   IonContent,
   IonIcon,
   IonItem,
@@ -11,7 +12,7 @@ import {
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { archiveOutline, archiveSharp, bookmarkOutline, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { analyticsOutline, analyticsSharp, exitOutline, exitSharp, heartCircleOutline, heartCircleSharp, helpCircleOutline, helpCircleSharp, informationCircleOutline, informationCircleSharp, peopleOutline, peopleSharp, settingsOutline, settingsSharp } from 'ionicons/icons';
 import './Menu.css';
 
 interface AppPage {
@@ -23,44 +24,50 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Inbox',
-    url: '/page/Inbox',
-    iosIcon: mailOutline,
-    mdIcon: mailSharp
+    title: 'Dispositivo',
+    url: '/dispositivo',
+    iosIcon: heartCircleOutline,
+    mdIcon: heartCircleSharp
   },
   {
-    title: 'Outbox',
-    url: '/page/Outbox',
-    iosIcon: paperPlaneOutline,
-    mdIcon: paperPlaneSharp
+    title: 'Seguimiento',
+    url: '/seguimiento',
+    iosIcon: analyticsOutline,
+    mdIcon: analyticsSharp
   },
   {
-    title: 'Favorites',
-    url: '/page/Favorites',
-    iosIcon: heartOutline,
-    mdIcon: heartSharp
+    title: 'Información',
+    url: '/informacion',
+    iosIcon: informationCircleOutline,
+    mdIcon: informationCircleSharp
   },
   {
-    title: 'Archived',
-    url: '/page/Archived',
-    iosIcon: archiveOutline,
-    mdIcon: archiveSharp
+    title: 'Red de Apoyo',
+    url: '/redDeApoyo',
+    iosIcon: peopleOutline,
+    mdIcon: peopleSharp
   },
   {
-    title: 'Trash',
-    url: '/page/Trash',
-    iosIcon: trashOutline,
-    mdIcon: trashSharp
+    title: 'Ayuda',
+    url: '/ayuda',
+    iosIcon: helpCircleOutline,
+    mdIcon: helpCircleSharp
   },
   {
-    title: 'Spam',
-    url: '/page/Spam',
-    iosIcon: warningOutline,
-    mdIcon: warningSharp
+    title: 'Configuración',
+    url: '/configuracion',
+    iosIcon: settingsOutline,
+    mdIcon: settingsSharp
+  },
+  {
+    title: 'Salir',
+    url: '/',
+    iosIcon: exitOutline,
+    mdIcon: exitSharp
   }
 ];
 
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -68,30 +75,28 @@ const Menu: React.FC = () => {
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
+              
         <IonList id="inbox-list">
-          <IonListHeader>Inbox</IonListHeader>
-          <IonNote>hi@ionicframework.com</IonNote>
+          <IonListHeader>
+            <IonItem>
+            <IonAvatar>
+              <img src="/assets/avatar.png" />
+            </IonAvatar>
+          </IonItem>
+          </IonListHeader>
+          <IonNote>Susana Delgado</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon} />
-                  <IonLabel>{appPage.title}</IonLabel>
+                  <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon}/>
+                  <IonLabel dir="start">{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
             );
           })}
         </IonList>
 
-        <IonList id="labels-list">
-          <IonListHeader>Labels</IonListHeader>
-          {labels.map((label, index) => (
-            <IonItem lines="none" key={index}>
-              <IonIcon slot="start" icon={bookmarkOutline} />
-              <IonLabel>{label}</IonLabel>
-            </IonItem>
-          ))}
-        </IonList>
       </IonContent>
     </IonMenu>
   );

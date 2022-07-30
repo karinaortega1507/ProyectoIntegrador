@@ -1,0 +1,76 @@
+.text-title{
+    color:#242323;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    text-align: center;
+}
+.card-1{
+    position: absolute;
+    width: 349px;
+    height: 130px;
+    left: 20px;
+    top: 90px;
+    background: #FBC1FE;
+    border-radius: 20px;
+   
+}
+.card-2{
+    position: absolute;
+    width: 349px;
+    height: 130px;
+    left: 20px;
+    top: 237px;
+    background: #FFC9BD;
+    border-radius: 20px;
+}
+.card-3{
+    position: absolute;
+    width: 349px;
+    height: 130px;
+    left: 20px;
+    top: 384px;
+    background: #FFC745;
+    border-radius: 20px;
+}
+.card-4{
+    position: absolute;
+    width: 349px;
+    height: 130px;
+    left: 20px;
+    top: 530px;
+    background: #FFF9C7;
+    border-radius: 20px;
+}
+.card-5{
+    position: absolute;
+    width: 349px;
+    height: 130px;
+    left: 20px;
+    top: 678px;
+    background: #CEFFCD;
+    border-radius: 20px;
+}
+.img-icon{
+    float: left;
+    margin: 10px;
+    width: 81.77px;
+    height: 90px;
+    max-width: 40%;
+    max-height: 100%;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+
+.text-content{
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 135%;
+    color: rgba(0, 0, 0, 0.82);
+    text-align: justify;
+    margin: 18px
+}

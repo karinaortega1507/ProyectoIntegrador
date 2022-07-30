@@ -1,0 +1,33 @@
+.text-seg{
+    font-family: 'Paytone One';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 120px;
+    /* identical to box height */
+    
+    text-align: center;
+}
+.img-seg{
+    position: absolute;
+    width: 310px;
+    height: 260px;
+    left: 43px;
+    top: 230px;
+
+    border-radius: 50px;
+}
+.button-process{
+    position: absolute;
+    width: 230px;
+    height: 60px;
+    left: 78px;
+    top: 557px;
+}
+.vector{
+    position: absolute;
+    width: 588px;
+    height: 176px;
+    left: 0px;
+    top: 668px;
+}

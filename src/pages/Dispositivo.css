@@ -1,0 +1,36 @@
+.text{
+    position: absolute;
+    width: 271px;
+    height: 99px;
+    left: 52px;
+    top: 158px;
+
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 135%;
+    /* or 30px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #242323;
+
+}
+.button-conect{
+    position: absolute;
+    width: 208px;
+    height: 60px;
+    left: 85px;
+    top: 332px;
+}
+.text-title{
+    color:#242323;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    text-align: center;
+}

@@ -1,0 +1,22 @@
+.color-content{
+    color:#F2F2F2;
+}
+.color-text-card{
+    color:#242323;
+    font-family: 'Karla';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 135%;
+    /* or 30px */
+
+    text-align: justify;
+}
+.text-title{
+    color:#242323;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    text-align: center;
+}
