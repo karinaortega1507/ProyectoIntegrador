@@ -1,5 +1,6 @@
-import { IonButton, IonButtons, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenuButton, IonPage, IonTitle, IonToggle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCard, IonCardContent, IonContent, IonIcon, IonItem, IonLabel, IonMenuButton, IonPage } from '@ionic/react';
 import { closeOutline, createOutline } from 'ionicons/icons';
+import React from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router';
 import IRedDeApoyoData from "../types/red_apoyo_data.type"
@@ -33,32 +34,21 @@ const listUsers= [
 ];
 
 const RedDeApoyo: React.FC = () => {
-  const [areUsers, setAreUsers] = useState<boolean>(false);
-  
-
-  
-  
+  const [areUsers, setAreUsers] = useState<boolean>(true);
   const list = listUsers.map((user: IRedDeApoyoData) => {
     return(
-      <IonList key={user.id}>
-      <IonItem >
-        <IonLabel className="ion-text-justify">
-          <p><a className="color-text-p"><b>Nombre: </b></a><a className="color-text-p">{user.nombre}</a></p>
-          <p><a className="color-text-p"><b>Apellidos: </b></a><a className="color-text-p">{user.apellidos}</a></p>
-          <p><a className="color-text-p"><b>Ciudad: </b></a><a className="color-text-p">{user.ciudad}</a></p>
-          <p><a className="color-text-p"><b>Dirección: </b></a><a className="color-text-p">{user.direccion}</a></p>
-          <p><a className="color-text-p"><b>Parentesco: </b></a><a className="color-text-p">{user.parentesco}</a></p>
-        </IonLabel>
-        <IonButton className="ion-text-right" color="primary" onClick={() => EditarContacto()}>
-              <IonIcon icon={createOutline}></IonIcon>
-          </IonButton>
-          <IonButton className="ion-text-right" color="danger" onClick={() => EliminarContacto()}>
-              <IonIcon icon={closeOutline}></IonIcon>
-            </IonButton>
-      </IonItem>
-      
-      
-    </IonList>
+        <IonCard key={user.id}>
+        <IonItem>
+            <IonLabel>{user.nombre} {user.apellidos} </IonLabel>
+            <IonButton fill="outline" slot="end"><IonIcon icon={createOutline}></IonIcon></IonButton>
+            <IonButton color = "danger" fill="outline" slot="end"><IonIcon icon={closeOutline}></IonIcon></IonButton>
+        </IonItem>
+        <IonCardContent>
+          <p><b>Dirección:</b> {user.direccion}</p> 
+          <p><b>Ciudad:</b> {user.ciudad}</p>
+          <p><b>Parentesco:</b>  {user.parentesco}</p>
+        </IonCardContent>      
+      </IonCard>      
     )
   })
 
@@ -72,7 +62,13 @@ const RedDeApoyo: React.FC = () => {
           </IonButtons>
         </div> 
         {areUsers ? (
-          list         
+          <React.Fragment>
+              {list}     
+            <div>
+              <IonButton routerLink="/agregar-contactos" expand="block" fill="solid">Agregar</IonButton>
+            </div>
+          </React.Fragment>
+              
           ) : (
             <div>
               <IonButton routerLink="/agregar-contactos" expand="block" fill="solid">Agregar</IonButton>

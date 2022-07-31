@@ -2,32 +2,40 @@
     font-family: 'Paytone One';
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
-    line-height: 120px;
-    /* identical to box height */
-    
+    font-size: 2rem;
+    line-height: 8rem;
     text-align: center;
 }
 .img-seg{
     position: absolute;
-    width: 310px;
-    height: 260px;
-    left: 43px;
-    top: 230px;
-
+    width: 82vw;
+    height: 46vh;
+    padding: 3rem;
     border-radius: 50px;
+    margin-left: 1.5rem;
 }
 .button-process{
-    position: absolute;
-    width: 230px;
-    height: 60px;
-    left: 78px;
-    top: 557px;
+    position: relative;
+    width: 18rem;
+    height: 4rem;
+    left: 2rem;
+    bottom: -27rem;
+    padding: 0.5rem;
 }
-.vector{
-    position: absolute;
+.img-vector{
+    /*
     width: 588px;
     height: 176px;
     left: 0px;
-    top: 668px;
+    top: 668px;*/
+    
+    width: 99vw;
+    height: 17vh;
+}
+.vector-position{
+
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
 }

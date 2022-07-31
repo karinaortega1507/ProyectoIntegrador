@@ -1,30 +1,28 @@
 .text{
     position: absolute;
-    width: 271px;
-    height: 99px;
-    left: 52px;
-    top: 158px;
-
+    /* width: 28vw; */
+    height: 10vh;
+    margin-left: 1rem;
+    top: 10rem;
     font-family: 'Karla';
     font-style: normal;
     font-weight: 700;
-    font-size: 22px;
-    line-height: 135%;
-    /* or 30px */
-
+    font-size: 1.5rem;
+    line-height: 120%;
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #242323;
+    padding: 1rem;
+    margin-right: 2rem;
 
 }
 .button-conect{
     position: absolute;
-    width: 208px;
-    height: 60px;
-    left: 85px;
-    top: 332px;
+    width: 52vw;
+     height: 5vh; 
+    left: 5rem;
+    top: 21rem;
 }
 .text-title{
     color:#242323;

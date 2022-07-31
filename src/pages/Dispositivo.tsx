@@ -16,15 +16,10 @@ const Dispositivo: React.FC = () => {
             <IonLabel className="text-title">Dispositivo</IonLabel>
           </IonButtons>
         </div> 
-        <div>
+        
         <p className="text">Por favor conectarse vía Bluetooth al dispositivo XIAO BLE SENSE</p>
-        </div>
-        <div className="button-conect">
-          <IonButton expand="block" fill="outline">Conectar</IonButton>
-        </div>
-        <div>
-          
-        </div>
+        <div><IonButton shape="round" className="button-conect" expand="block" fill="outline">Conectar</IonButton></div>
+        
         
       </IonContent>
     </IonPage>

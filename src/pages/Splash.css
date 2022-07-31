@@ -12,24 +12,24 @@ ion-label {
   }
 
   .center {
-    font-size: 40px;
+    font-size: 2.5rem;
     position: absolute;
-    margin-top: 35%;
-    margin-left: 23%;
-    margin-right: 25%;
+    margin-top: 7.5rem;
+    margin-right: 1rem;
+    margin-left: 6.1rem;
   }
   .img-center{
     position: absolute;
-    width: 324px;
-    height: 330.96px;
-    left: 47px;
-    top: 252px;
+    width: 60vw;
+    height: 40vh;
+    left: 5.5rem;
+    top: 15rem;
   }
   .inf-center{
-    font-size: 30px;
-    position: absolute;
-    width: 332px;
-    height: 56px;
-    left: 115px;
-    top: 663px;
+    font-size: 2rem;
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    left: 6.8rem;
+    top: 42rem;
   }

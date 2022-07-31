@@ -16,17 +16,17 @@ const Seguimiento: React.FC = () => {
           </IonButtons>
         </div> 
         <div className="ion-text-center">
-        <IonLabel className="ion-text-md-{modifier} text-seg" color ="primary" >SEGUIMIENTO</IonLabel>
+        <IonLabel className="text-seg" color ="primary" >SEGUIMIENTO</IonLabel>
         </div>
         <div>
           <img className="img-seg" src="assets/icon/seguimiento-portada.png" alt=""/>
         </div>
-        <div className="button-process">
-          <IonButton expand="block" fill="solid">Proceso en curso</IonButton>
+        <div >
+          <IonButton className="button-process" expand="block" fill="solid" shape="round" >Proceso en curso</IonButton>
         </div>
 
-        <div>
-          <img className="vector" src="assets/icon/Vector.png" alt=""/>
+        <div className="vector-position">
+          <img className="img-vector" src="assets/icon/Vector.png" alt=""/>
         </div>
       </IonContent>
     </IonPage>
@@ -34,3 +34,4 @@ const Seguimiento: React.FC = () => {
 };
 
 export default Seguimiento;
+/**className="vector" */
