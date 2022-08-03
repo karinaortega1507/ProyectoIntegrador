@@ -8,6 +8,12 @@ import Login from './pages/Login';
 import Registro from './pages/Registro';
 import Dispositivo from './pages/Dispositivo';
 import Seguimiento from './pages/Seguimiento';
+import SeguimientoProceso from './pages/SeguimientoProceso';
+import Informacion from './pages/Informacion';
+import Ayuda from './pages/Ayuda';
+import MedidaProteccion from './pages/MedidaProteccion';
+import Comportamiento from './pages/Comportamiento';
+import AgregarContactos from './pages/AgregarContactos';
 
 import RedDeApoyo from './pages/RedDeApoyo';
 
@@ -31,11 +37,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Informacion from './pages/Informacion';
-import Ayuda from './pages/Ayuda';
-import MedidaProteccion from './pages/MedidaProteccion';
-import Comportamiento from './pages/Comportamiento';
-import AgregarContactos from './pages/AgregarContactos';
+
 
 setupIonicReact();
 
@@ -59,6 +61,7 @@ const App: React.FC = () => {
             <Route exact path="/medidas-proteccion" component={MedidaProteccion} ></Route>
             <Route exact path="/comportamiento-agresivo" component={Comportamiento} ></Route>
             <Route exact path="/agregar-contactos" component={AgregarContactos} ></Route>
+            <Route exact path="/seguimiento-proceso" component={SeguimientoProceso} ></Route>
           </IonRouterOutlet>
         </IonSplitPane>
        

@@ -11,7 +11,7 @@ const AgregarContactos: React.FC = () => {
         <div>
           <IonButtons slot="start">
             <IonMenuButton color="secondary" />
-            <IonLabel className="text-title">Agregar Contactos a la Red de Apoyo</IonLabel>
+            <IonLabel className="text-title">Agregar Contactos</IonLabel>
           </IonButtons>
         </div> 
         

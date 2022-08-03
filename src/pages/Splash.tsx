@@ -9,14 +9,14 @@ const Splash: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen>
-      <div className="center">
-        <IonLabel > Yanapaway </IonLabel>
+      <div className="container">
+        <IonLabel className="yanapaway"> Yanapaway </IonLabel>
       </div>
       <div >
        <img className="img-center" src="assets/woman.png"/> 
       </div>
-      <div className="inf-center">
-        <IonLabel > Usa tu voz </IonLabel>
+      <div className="container">
+        <IonLabel className="usa-tu-voz"> Usa tu voz </IonLabel>
       </div>
       <IonFab  color = "primary" vertical="bottom" horizontal="end" slot="fixed">
           <IonFabButton routerLink="/home">

@@ -11,25 +11,29 @@ ion-label {
     
   }
 
-  .center {
-    font-size: 2.5rem;
+  .container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+  .yanapaway {
+    font-size: 3.5em;
     position: absolute;
-    margin-top: 7.5rem;
-    margin-right: 1rem;
-    margin-left: 6.1rem;
+    margin-top: 5.5em;
+    
   }
   .img-center{
     position: absolute;
     width: 60vw;
     height: 40vh;
-    left: 5.5rem;
-    top: 15rem;
+    left: 5.5em;
+    top: 15em;
   }
-  .inf-center{
-    font-size: 2rem;
+  .usa-tu-voz{
+    font-size: 2em;
     position: relative;
-    width: 10rem;
-    height: 10rem;
-    left: 6.8rem;
-    top: 42rem;
+    width: 10em;
+    height: 10em;
+    top: 20em;
   }

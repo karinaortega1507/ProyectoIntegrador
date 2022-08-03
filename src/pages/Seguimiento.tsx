@@ -18,11 +18,11 @@ const Seguimiento: React.FC = () => {
         <div className="ion-text-center">
         <IonLabel className="text-seg" color ="primary" >SEGUIMIENTO</IonLabel>
         </div>
-        <div>
+        <div className="container">
           <img className="img-seg" src="assets/icon/seguimiento-portada.png" alt=""/>
         </div>
-        <div >
-          <IonButton className="button-process" expand="block" fill="solid" shape="round" >Proceso en curso</IonButton>
+        <div className="container">
+          <IonButton routerLink="/seguimiento-proceso" className="button-process" expand="block" fill="solid" shape="round" >Proceso en curso</IonButton>
         </div>
 
         <div className="vector-position">

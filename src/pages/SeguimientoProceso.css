@@ -1,0 +1,37 @@
+.container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    
+}
+.button-option{
+    margin-right: 1.5em;
+    width: 40vw;
+    height: 6vh;
+
+}
+.button-valoracion{
+    margin-right: 0.5em;
+    width: 45vw;
+    height: 6vh;
+
+}
+.button-mProteccion{
+    width: 70vw;
+    height: 6vh;
+}
+.img-vector{
+   
+    width: 99vw;
+    height: 17vh;
+}
+.vector-position{
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+}
+.img-mapa{
+    position: relative;
+   display:flex;
+}

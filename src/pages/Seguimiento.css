@@ -1,3 +1,9 @@
+.container{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
 .text-seg{
     font-family: 'Paytone One';
     font-style: normal;
@@ -7,28 +13,18 @@
     text-align: center;
 }
 .img-seg{
-    position: absolute;
-    width: 82vw;
-    height: 46vh;
-    padding: 3rem;
-    border-radius: 50px;
-    margin-left: 1.5rem;
+    margin-top: 1em;
+    width: 80vw;
+    height: 40vh;
+    
 }
 .button-process{
-    position: relative;
-    width: 18rem;
-    height: 4rem;
-    left: 2rem;
-    bottom: -27rem;
-    padding: 0.5rem;
+    width: 17em;
+    height: 3em;
+    margin-top: 2em;
 }
 .img-vector{
-    /*
-    width: 588px;
-    height: 176px;
-    left: 0px;
-    top: 668px;*/
-    
+   
     width: 99vw;
     height: 17vh;
 }
