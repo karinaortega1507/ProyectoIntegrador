@@ -84,7 +84,7 @@ const SeguimientoProceso: React.FC = () => {
           </p>
           <div className="vector-position">
           <img className="img-vector" src="assets/icon/Vector.png" alt=""/>
-          <img className="img-mapa" src="assets/icon/mapa.png" alt=""/>
+          <IonButton className="img-mapa" routerLink="/ruta-del-proceso" fill="clear"> <img src="assets/icon/mapa.png" alt=""/></IonButton>
         </div>
         </div>
       </IonContent>

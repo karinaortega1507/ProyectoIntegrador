@@ -25,8 +25,8 @@ const Seguimiento: React.FC = () => {
           <IonButton routerLink="/seguimiento-proceso" className="button-process" expand="block" fill="solid" shape="round" >Proceso en curso</IonButton>
         </div>
 
-        <div className="vector-position">
-          <img className="img-vector" src="assets/icon/Vector.png" alt=""/>
+        <div className="vector">
+          <img className="vector-img" src="assets/icon/Vector.png" alt=""/>
         </div>
       </IonContent>
     </IonPage>

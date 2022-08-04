@@ -1,3 +1,10 @@
+ion-label {
+    font-style: 1.5em;
+  }
+
+  ion-text{
+    font-size:1em
+  }
 .container{
     align-items: center;
     display: flex;
@@ -12,7 +19,7 @@
 }
 .button-valoracion{
     margin-right: 0.5em;
-    width: 45vw;
+    width: 44vw;
     height: 6vh;
 
 }
@@ -20,11 +27,7 @@
     width: 70vw;
     height: 6vh;
 }
-.img-vector{
-   
-    width: 99vw;
-    height: 17vh;
-}
+
 .vector-position{
     width: 100%;
     position: absolute;
@@ -32,6 +35,14 @@
     right: 0;
 }
 .img-mapa{
-    position: relative;
-   display:flex;
+    position: absolute;
+    display: flex;
+    right: 1.3em;
+    bottom: 1.7em;
+}
+.img-vector{
+    position: absolute;
+    width: 99vw;
+    height: 17vh;
+    bottom: 0;
 }

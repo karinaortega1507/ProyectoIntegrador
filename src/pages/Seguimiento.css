@@ -23,12 +23,12 @@
     height: 3em;
     margin-top: 2em;
 }
-.img-vector{
+.vector-img{
    
     width: 99vw;
     height: 17vh;
 }
-.vector-position{
+.vector{
 
     width: 100%;
     position: absolute;

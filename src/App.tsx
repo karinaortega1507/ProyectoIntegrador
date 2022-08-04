@@ -14,6 +14,7 @@ import Ayuda from './pages/Ayuda';
 import MedidaProteccion from './pages/MedidaProteccion';
 import Comportamiento from './pages/Comportamiento';
 import AgregarContactos from './pages/AgregarContactos';
+import RutaProceso from './pages/RutaProceso';
 
 import RedDeApoyo from './pages/RedDeApoyo';
 
@@ -62,9 +63,9 @@ const App: React.FC = () => {
             <Route exact path="/comportamiento-agresivo" component={Comportamiento} ></Route>
             <Route exact path="/agregar-contactos" component={AgregarContactos} ></Route>
             <Route exact path="/seguimiento-proceso" component={SeguimientoProceso} ></Route>
+            <Route exact path="/ruta-del-proceso" component={RutaProceso} ></Route>
           </IonRouterOutlet>
         </IonSplitPane>
-       
       </IonReactRouter>
     </IonApp>
   );
