@@ -18,63 +18,63 @@
 .img-curva{
     position: absolute;
     left: 12.8em;
-    top: 8.6em;
-    width: 37vw;
-    height: 25vh;
+    top: 5.6em;
+    width: 32vw;
+    height: 21vh;
 }
 .img-denuncia-txt{
     font-size: 1.3em;
-    top: 7.8em;
-    left: 5.5em;
+    top: 5.8em;
+    left: 6em;
     position: absolute;
 }
 .img-asistencia-txt{
     font-size: 1.3em;
-    top: 16.3em;
+    top: 12.5em;
     left: 3.5em;
     position: absolute;
 }
 .img-ambulancia{
-    width: 31vw;
+    width: 41vw;
     position: absolute;
-    height: 31vh;
-    left: 9.8em;
-    top: 13em;
+    height: 41vh;
+    left: 6.7em;
+    top: 3.5em;
 
 }
 .img-curva1{
     position: absolute;
     left: 3.8em;
-    top: 22em;
-    width: 48vw;
+    top: 17em;
+    width: 34vw;
     height: 25vh;
 }
 .img-admision-txt{
     font-size: 1.3em;
-    top: 26.8em;
-    left: 2.5em;
+    top: 22.4em;
+    left: 3.5em;
     position: absolute;
 }
 .img-recep-denuncia{
-    top: 33em;
-    left: 15em;
+    top: 28em;
+    left: 16em;
     position: absolute;
 }
 .img-curva2{
     position: absolute;
-    top: 36em;
-    left: 11em;
-    width: 50vw;
+    top: 30em;
+    left: 8em;                                  
+    width: 37vw;
     height: 25vh;
 }
 .img-proteccion{
     position: absolute;
-    top: 46em;
+    top: 40.5em;
 }
 .img-proteccion-txt{
     font-size: 1.3em;
-    top: 35.8em;
-    left: 2.5em;
+    top: 32.4em;
+    left: 4.5em;
     position: absolute;
 }
 

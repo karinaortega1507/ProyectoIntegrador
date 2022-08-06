@@ -73,11 +73,11 @@ const SeguimientoProceso: React.FC = () => {
           <p><IonText>Medidas de Protección</IonText></p>
           <p className="container">
             {
-            recibido ? <IonButton className ="button-option"color="secondary"  shape="round" fill="solid">Recibido</IonButton>
+            recibido ? <IonButton className ="button-mProteccion"color="secondary"  shape="round" fill="solid">Recibido</IonButton>
                     : <IonButton onClick={()=>setRecibido(true)} className ="button-option"color="secondary"  shape="round" fill="outline">Recibido</IonButton>
             }
             {
-              enProceso ? <IonButton className ="button-option"color="warning"  shape="round" fill="solid">En Proceso</IonButton>
+              enProceso ? <IonButton className ="button-mProteccion"color="warning"  shape="round" fill="solid">En Proceso</IonButton>
                      : <IonButton onClick={()=>setEnProceso(true)} className ="button-option" color="warning"  shape="round" fill="outline">En Proceso</IonButton>
             }
             

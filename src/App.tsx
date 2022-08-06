@@ -5,7 +5,6 @@ import Menu from './components/Menu';
 import Home from './pages/Home';
 import Splash from './pages/Splash';
 import Login from './pages/Login';
-import Registro from './pages/Registro';
 import Dispositivo from './pages/Dispositivo';
 import Seguimiento from './pages/Seguimiento';
 import SeguimientoProceso from './pages/SeguimientoProceso';
@@ -52,7 +51,6 @@ const App: React.FC = () => {
             <Route path="/home" exact={true} component={Home} ></Route>
             <Route path="/" exact={true} component={Splash} ></Route>
             <Route path="/login" exact={true} component={Login} ></Route>
-            <Route path="/registro" exact={true} component={Registro} ></Route>
             <Route path="/dispositivo" exact={true} component={Dispositivo} ></Route>
             <Route path="/seguimiento" exact={true} component={Seguimiento} ></Route>
             <Route path="/redDeApoyo" exact={true} component={RedDeApoyo} ></Route>

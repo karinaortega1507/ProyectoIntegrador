@@ -28,7 +28,7 @@ const RutaProceso: React.FC = () => {
         <IonButton fill="clear" className="img-ambulancia"><img src="assets/icon/ambulancia-icon.png" alt=""/></IonButton>
         </div>
         <div>
-        <img className="img-curva1" src="assets/icon/camino-curva1.png" alt="" />
+        <img className="img-curva1" src="assets/icon/camino-curva2.png" alt="" />
         </div>
         <div>
           <IonText className="img-admision-txt">Admisión a trámites</IonText>
