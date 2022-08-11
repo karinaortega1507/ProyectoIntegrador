@@ -1,7 +1,36 @@
 import http from "../http-common";
 import IRedDeApoyoData from "../types/red_apoyo_data.type"
 
-class RedDeApoyoDataService {
+
+
+export async function searchContactById(id: string) {
+  let url = 'http://localhost:3000/contactos/' + id + '/'
+  let response = await fetch(url, {
+    "method": 'GET',
+    "headers": {
+      "content-Type": 'application/json'
+    }
+  })
+  return await response.json();
+}
+
+export async function getId(id: string) {
+  return await http.get<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
+}
+
+export async function eliminarContacto (id:string) {
+  return await http.delete<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
+};
+
+
+
+
+
+
+
+/**
+ * let url = process.env.REACT_APP_API  + 'cursos-publicados/' + id + '/'
+ * class RedDeApoyoDataService {
   getAll() {
     return http.get<Array<IRedDeApoyoData>>("/red_apoyo");
   }
@@ -25,3 +54,19 @@ class RedDeApoyoDataService {
   }
 }
 export default new RedDeApoyoDataService();
+ */
+/**
+ * axios
+    .delete(API_URL + "/" + id)
+    .then((response) => {
+      if (response.data) {
+        setMessage("¡Tu contacto se ha eliminado correctamente!");
+        console.log(response.data);
+        setIsSent(true);
+        history.push("/redDeApoyo");
+      }
+    })
+    .catch((error) => {
+      console.log(error.response.data);
+    });
+ */

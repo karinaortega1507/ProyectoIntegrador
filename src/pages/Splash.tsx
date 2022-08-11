@@ -19,7 +19,7 @@ const Splash: React.FC = () => {
         <IonLabel className="usa-tu-voz"> Usa tu voz </IonLabel>
       </div>
       <IonFab  color = "primary" vertical="bottom" horizontal="end" slot="fixed">
-          <IonFabButton routerLink="/home">
+          <IonFabButton routerLink="/login">
             <IonIcon icon={chevronForwardOutline} /> 
           </IonFabButton>
         </IonFab>

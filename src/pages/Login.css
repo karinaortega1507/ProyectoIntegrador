@@ -1,0 +1,31 @@
+.p-error{
+    font-size: 0.7em;
+    color:blueviolet;
+    font-style: italic;
+}
+.img-login{
+    width:100%
+}
+.text-title{
+    text-align: center;
+}
+.txt-proceso{
+    font-size: 1.3em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #484e4e;
+}
+.txt-ingreso-credenciales{
+    font-size: 0.6em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #888888;
+
+}
+.form-login{
+    background-color: #ffffff;
+}
+ion-content {
+    --background: var(--ion-item-background, var(--ion-background-color, #fff));
+  }
+.color-background{
+    color:#fff;
+}

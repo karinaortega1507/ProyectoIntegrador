@@ -8,59 +8,60 @@
 }
 .card-1{
     position: absolute;
-    width: 349px;
-    height: 130px;
-    left: 20px;
-    top: 90px;
+    width: 23em;
+    height: 8.5em;
+    /* left: 20px; */
+    /* top: 90px; */
     background: #FBC1FE;
-    border-radius: 20px;
-   
+    border-radius: 1em;
+    display: table-cell;
+    vertical-align: middle;
 }
 .card-2{
     position: absolute;
-    width: 349px;
-    height: 130px;
-    left: 20px;
-    top: 237px;
+    width: 23em;
+    height: 8.5em;
+    /* left: 20px; */
+    top: 14.5em;
     background: #FFC9BD;
-    border-radius: 20px;
+    border-radius: 1em;
 }
 .card-3{
     position: absolute;
-    width: 349px;
-    height: 130px;
+    width: 23em;
+    height: 8.8em;
     left: 20px;
-    top: 384px;
+    top: 23.8em;
     background: #FFC745;
-    border-radius: 20px;
+    border-radius: 1em;
 }
 .card-4{
     position: absolute;
-    width: 349px;
-    height: 130px;
-    left: 20px;
-    top: 530px;
+    width: 23em;
+    height: 8.5em;
+    /* left: 20px; */
+    top: 33.4em;
     background: #FFF9C7;
-    border-radius: 20px;
+    border-radius: 1em;
 }
 .card-5{
     position: absolute;
-    width: 349px;
-    height: 130px;
-    left: 20px;
-    top: 678px;
+    width: 23em;
+    height: 8.5em;
+    /* left: 20px; */
+    top: 42.7em;
     background: #CEFFCD;
-    border-radius: 20px;
+    border-radius: 1em;
 }
 .img-icon{
     float: left;
     margin: 10px;
-    width: 81.77px;
-    height: 90px;
-    max-width: 40%;
-    max-height: 100%;
-    margin-left: 10px;
-    margin-top: 20px;
+    /* width: fit-content; */
+    height: 5em;
+    /* max-width: 5em; */
+    max-height: 5em;
+    /* margin-left: 10px; */
+    margin-top: 1.1em;
 }
 
 
@@ -68,9 +69,9 @@
     font-family: 'Karla';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 135%;
     color: rgba(0, 0, 0, 0.82);
     text-align: justify;
-    margin: 18px
+    margin: 0.8em
 }
