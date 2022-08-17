@@ -131,7 +131,7 @@ const RedDeApoyo: React.FC = () => {
             <b>Ciudad:</b> {user.ciudad}
           </p>
           <p>
-            <b>Parentesco:</b> {user.parentesco}
+            <b>Vínculo:</b> {user.parentesco}
           </p>
         </IonCardContent>
       </IonCard>

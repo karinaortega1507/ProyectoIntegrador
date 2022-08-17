@@ -130,7 +130,6 @@ const EditarContactos: React.FC = () => {
             <IonInput
               className="ion-text-left"
               type="tel"
-              color="primary"
               value={telefono}
               onIonChange={(e) => setTelefono(e.detail.value!)}
               {...register("telefono")}

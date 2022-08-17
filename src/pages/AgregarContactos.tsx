@@ -20,7 +20,7 @@ import "./AgregarContactos.css";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useHistory } from "react-router";
-import { ErrorMessage } from "@hookform/error-message";
+
 
 const AgregarContactos: React.FC = () => {
   const API_URL = "http://localhost:3000/contactos";
