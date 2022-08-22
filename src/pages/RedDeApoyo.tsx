@@ -51,7 +51,8 @@ const listUsers = [
 ];
 
 const RedDeApoyo: React.FC = () => {
-  const API_URL = "http://localhost:3000/contactos";
+  const API_URL =
+    "https://salty-dusk-19882.herokuapp.com/api/v1/redApoyos/usuario/4";
   //const { id } = useParams<{ id: string }>();
   const history = useHistory();
   const [isSent, setIsSent] = useState<boolean>(false);
@@ -69,7 +70,6 @@ const RedDeApoyo: React.FC = () => {
   useIonViewDidEnter(async () => {
     try {
       //fetch and get CONTACTS
-
       const result = await authAxios.get(API_URL);
       //console.log(result.data);
       setState({ contactos: result.data });
@@ -103,7 +103,7 @@ const RedDeApoyo: React.FC = () => {
       <IonCard key={user.id}>
         <IonItem>
           <IonLabel>
-            {user.nombre} {user.apellidos}{" "}
+            {user.nombres} {user.apellidos}{" "}
           </IonLabel>
           <IonButton routerLink={link} fill="outline" slot="end">
             <IonIcon icon={createOutline}></IonIcon>

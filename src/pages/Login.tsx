@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import {
   IonAlert,
   IonButton,
-  IonButtons,
   IonContent,
-  IonHeader,
   IonInput,
   IonItem,
   IonLabel,
-  IonMenuButton,
   IonPage,
-  IonSelect,
-  IonSelectOption,
-  IonTitle,
-  IonToolbar,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
@@ -40,12 +33,6 @@ const Login: React.FC = () => {
   return (
     <IonPage className="ion-padding">
       <IonContent>
-        <div>
-          <IonButtons slot="start">
-            <IonMenuButton color="secondary" />
-            <IonLabel className="text-title"></IonLabel>
-          </IonButtons>
-        </div>
         <div className="img-login">
           <img src="assets/icon/img-login.png" alt=""></img>
         </div>
@@ -73,12 +60,7 @@ const Login: React.FC = () => {
               values.contrasena === "prueba"
             ) {
               history.push("/home");
-              localStorage.setItem(
-                "userId",
-                JSON.stringify({
-                  id: values.cedula,
-                })
-              );
+              localStorage.setItem("userId", values.cedula);
             } else setShowAlert(true);
           }}
         >
@@ -141,4 +123,12 @@ export default Login;
 
               <p>ERRORS</p>
               <pre>{JSON.stringify(formikProps.errors, null, 2)} </pre>
-            </div> */
+            </div> 
+            
+            localStorage.setItem(
+                "userId",
+                JSON.stringify({
+                  id: values.cedula,
+                })
+              );
+            */

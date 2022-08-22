@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth_header';
 
-const API_URL = 'http://localhost:3000/user/';
+const API_URL = 'https://salty-dusk-19882.herokuapp.com/api/v1/usuarios/';
 
 class UserService {
   getPublicContent() {

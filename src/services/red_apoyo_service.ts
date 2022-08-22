@@ -4,7 +4,7 @@ import IRedDeApoyoData from "../types/red_apoyo_data.type"
 
 
 export async function searchContactById(id: string) {
-  let url = 'http://localhost:3000/contactos/' + id + '/'
+  let url = 'https://salty-dusk-19882.herokuapp.com/api/v1/redApoyos/' + id + '/'
   let response = await fetch(url, {
     "method": 'GET',
     "headers": {
@@ -15,11 +15,11 @@ export async function searchContactById(id: string) {
 }
 
 export async function getId(id: string) {
-  return await http.get<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
+  return await http.get<IRedDeApoyoData>(`https://salty-dusk-19882.herokuapp.com/api/v1/redApoyos/${id}`);
 }
 
 export async function eliminarContacto (id:string) {
-  return await http.delete<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
+  return await http.delete<IRedDeApoyoData>(`https://salty-dusk-19882.herokuapp.com/api/v1/redApoyos/${id}`);
 };
 
 

@@ -1,6 +1,6 @@
 export default interface IRedDeApoyoData {
     id: string,
-    nombre: string,
+    nombres: string,
     apellidos: string,
     telefono:string;
     ciudad?: string,

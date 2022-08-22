@@ -24,9 +24,9 @@ import { searchContactById, getId } from "../services/red_apoyo_service";
 import axios from "axios";
 
 const EditarContactos: React.FC = () => {
-  const API_URL = "http://localhost:3000/contactos";
+  const API_URL = "https://salty-dusk-19882.herokuapp.com/api/v1/usuarios";
   const { id } = useParams<{ id: string }>();
-  const [nombre, setNombre] = useState<string>("");
+  const [nombres, setNombres] = useState<string>("");
   const [apellido, setApellido] = useState<string>("");
   const [direccion, setDireccion] = useState<any>("");
   const [parentesco, setParentesco] = useState<any>("");
@@ -52,7 +52,7 @@ const EditarContactos: React.FC = () => {
   const getCurso = async () => {
     let result = await getId(id);
     if (result) {
-      setNombre(result.data.nombre);
+      setNombres(result.data.nombres);
       setApellido(result.data.apellidos);
       setDireccion(result.data.direccion);
       setParentesco(result.data.parentesco);
@@ -68,11 +68,19 @@ const EditarContactos: React.FC = () => {
    */
 
   const onSubmit = (data: any) => {
+    console.log(data);
+    if (data === null) {
+      setMessage("¡Tu contacto se ha guardado correctamente!");
+      setIsSent(true);
+      reset();
+      history.push("/redDeApoyo");
+    }
+
     axios
       .put(API_URL + "/" + id, data)
       .then((response) => {
         if (response.data) {
-          setMessage("¡Tu contacto se ha guardado correctamente!");
+          setMessage("¡Tu contacto se ha actualizado correctamente!");
           console.log(response.data);
           setIsSent(true);
           reset();
@@ -101,15 +109,15 @@ const EditarContactos: React.FC = () => {
             <IonLabel className="text-title">Editar Contacto</IonLabel>
           </IonButtons>
         </div>
-
+        <br />
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* === ION INPUT === */}
           <IonItem>
             <IonLabel>Nombre</IonLabel>
             <IonInput
-              value={nombre}
-              onIonChange={(e) => setNombre(e.detail.value!)}
-              {...register("nombre", {
+              value={nombres}
+              onIonChange={(e) => setNombres(e.detail.value!)}
+              {...register("nombres", {
                 required: "Un nombre es requerido",
               })}
             />
@@ -152,7 +160,7 @@ const EditarContactos: React.FC = () => {
             />
           </IonItem>
           <IonItem>
-            <IonLabel>Parentesco</IonLabel>
+            <IonLabel>Vínculo</IonLabel>
             <IonInput
               value={parentesco}
               onIonChange={(e) => setParentesco(e.detail.value!)}
@@ -161,6 +169,9 @@ const EditarContactos: React.FC = () => {
               })}
             />
           </IonItem>
+          <br />
+          <br />
+          <br />
           <div>
             <IonButton shape="round" expand="block" type="submit">
               Guardar

@@ -21,7 +21,6 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useHistory } from "react-router";
 
-
 const AgregarContactos: React.FC = () => {
   const API_URL = "http://localhost:3000/contactos";
   const [isSent, setIsSent] = useState<boolean>(false);
@@ -130,7 +129,7 @@ const AgregarContactos: React.FC = () => {
             <IonRow>
               <IonCol>
                 <IonItem>
-                  <IonLabel position="floating">Parentesco</IonLabel>
+                  <IonLabel position="floating">Vínculo</IonLabel>
                   <IonInput
                     type="text"
                     {...register("parentesco", {
@@ -142,7 +141,12 @@ const AgregarContactos: React.FC = () => {
             </IonRow>
             <IonRow>
               <IonCol className="ion-text-center ion-margin-top">
-                <IonButton shape="round" fill="outline" type="submit">
+                <IonButton
+                  expand="block"
+                  fill="solid"
+                  shape="round"
+                  type="submit"
+                >
                   Guardar
                 </IonButton>
               </IonCol>
