@@ -22,8 +22,6 @@ import RutaProceso from "./pages/RutaProceso";
 import EditarContactos from "./pages/EditarContactos";
 import RedDeApoyo from "./pages/RedDeApoyo";
 
-import Configuracion from "./pages/Configuracion";
-
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
 
@@ -72,11 +70,6 @@ const App: React.FC = () => {
             ></Route>
             <Route exact path="/ayuda" component={Ayuda}></Route>
             <Route exact path="/informacion" component={Informacion}></Route>
-            <Route
-              path="/configuracion"
-              exact={true}
-              component={Configuracion}
-            ></Route>
             <Route
               exact
               path="/medidas-proteccion"

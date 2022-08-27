@@ -15,11 +15,11 @@ export async function searchContactById(id: string) {
 }
 
 export async function getId(id: string) {
-  return await http.get<IRedDeApoyoData>(`https://salty-dusk-19882.herokuapp.com/api/v1/redApoyos/${id}`);
+  return await http.get<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
 }
 
 export async function eliminarContacto (id:string) {
-  return await http.delete<IRedDeApoyoData>(`https://salty-dusk-19882.herokuapp.com/api/v1/redApoyos/${id}`);
+  return await http.delete<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
 };
 
 

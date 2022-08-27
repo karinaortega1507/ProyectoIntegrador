@@ -21,43 +21,14 @@ import { useForm } from "react-hook-form";
 import { useHistory, useParams } from "react-router";
 import IRedDeApoyoData from "../types/red_apoyo_data.type";
 import "./RedDeApoyo.css";
-//import { eliminarContacto } from "../services/red_apoyo_service";
-
-const listUsers = [
-  {
-    id: "121211",
-    nombre: "San",
-    apellidos: "Pérez",
-    ciudad: "Gye",
-    direccion: "Florida",
-    parentesco: "ninguno",
-  },
-  {
-    id: "121212",
-    nombre: "Luis",
-    apellidos: "Pérez",
-    ciudad: "Gye",
-    direccion: "Florida",
-    parentesco: "hermano",
-  },
-  {
-    id: "121213",
-    nombre: "José",
-    apellidos: "Pérez",
-    ciudad: "Gye",
-    direccion: "Florida",
-    parentesco: "hijo",
-  },
-];
 
 const RedDeApoyo: React.FC = () => {
-  const API_URL =
-    "https://salty-dusk-19882.herokuapp.com/api/v1/redApoyos/usuario/4";
+  const API_URL = "http://localhost:3000/contactos";
   //const { id } = useParams<{ id: string }>();
   const history = useHistory();
   const [isSent, setIsSent] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-
+  const [areUsers, setAreUsers] = useState<boolean>();
   const [id, setId] = useState<string>();
   const [state, setState] = React.useState({
     contactos: [],
@@ -71,13 +42,15 @@ const RedDeApoyo: React.FC = () => {
     try {
       //fetch and get CONTACTS
       const result = await authAxios.get(API_URL);
-      //console.log(result.data);
+      console.log(result.data);
       setState({ contactos: result.data });
+      console.log("result: " + result.data.length);
+      if (result.data.length === 0) setAreUsers(false);
+      else setAreUsers(true);
     } catch (error) {
       console.log(error);
     }
   });
-
   const eliminarContacto = (id: string) => {
     axios
       .delete(API_URL + "/" + id)
@@ -86,16 +59,14 @@ const RedDeApoyo: React.FC = () => {
           setMessage("¡Tu contacto se ha eliminado correctamente!");
           console.log(response.data);
           setIsSent(true);
-          reset();
-          history.push("/redDeApoyo");
         }
+        history.push("/redDeApoyo");
       })
       .catch((error) => {
         console.log(error.response.data);
       });
   };
-
-  const [areUsers, setAreUsers] = useState<boolean>(true);
+  useEffect(() => {}, [state]);
 
   const list = state.contactos.map((user: IRedDeApoyoData) => {
     const link = `/editar-contactos/${user.id}`;
@@ -131,7 +102,7 @@ const RedDeApoyo: React.FC = () => {
             <b>Ciudad:</b> {user.ciudad}
           </p>
           <p>
-            <b>Vínculo:</b> {user.parentesco}
+            <b>Vínculo:</b> {user.vinculo}
           </p>
         </IonCardContent>
       </IonCard>
@@ -151,7 +122,7 @@ const RedDeApoyo: React.FC = () => {
         <div>
           <IonButtons slot="start">
             <IonMenuButton color="secondary" />
-            <IonLabel className="text-title">Red de Apoyo</IonLabel>
+            <IonLabel className="text-title-red">Red de Apoyo</IonLabel>
           </IonButtons>
         </div>
         {areUsers ? (
@@ -246,3 +217,6 @@ export default RedDeApoyo;
   onClick={() => {
               eliminarContacto();
             }}*/
+/**
+ *
+ */

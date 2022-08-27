@@ -24,7 +24,7 @@
     background-color: #ffffff;
 }
 ion-content {
-    --background: var(--ion-item-background, var(--ion-background-color, #fff));
+    --background: var(--ion-item-background, var(--ion-background-color, #f2f2f2));
   }
 .color-background{
     color:#fff;

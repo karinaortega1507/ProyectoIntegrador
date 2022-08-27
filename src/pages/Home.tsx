@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent color="secondary" className="ion-padding">
+      <IonContent color="secondary" className="ion-padding ion-text-center">
         <div>
           <IonButtons slot="start">
             <IonMenuButton color="tertiary" />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import {
@@ -9,9 +9,11 @@ import {
   IonItem,
   IonLabel,
   IonPage,
+  useIonViewDidEnter,
 } from "@ionic/react";
 import { useHistory } from "react-router-dom";
 import "./Login.css";
+import axios from "axios";
 
 const validationSchema = yup.object({
   cedula: yup
@@ -26,13 +28,45 @@ const validationSchema = yup.object({
     .required("Contraseña es requerida"),
 });
 
+interface User {
+  id: string;
+  nombres: string;
+  apellidos: string;
+  cedula: string;
+  clave: string;
+}
+
+const API_URL = "http://localhost:3000/user";
+
 const Login: React.FC = () => {
+  let cedula: any;
+  let clave: any;
   const history = useHistory();
   const [showAlert, setShowAlert] = useState(false);
+  const authAxios = axios.create({
+    baseURL: API_URL,
+  });
+  const [state, setState] = React.useState({
+    usersArray: [],
+  });
+
+  useIonViewDidEnter(async () => {
+    const users = await authAxios.get(API_URL);
+    console.log(users.data);
+    setState({ usersArray: users.data });
+  });
+
+  const checkUser = () => {
+    state.usersArray.map((user: User) => {
+      if (user.cedula === cedula && user.clave === clave) {
+        localStorage.setItem("userId", user.id);
+      }
+    });
+  };
 
   return (
     <IonPage className="ion-padding">
-      <IonContent>
+      <IonContent scroll-y="false">
         <div className="img-login">
           <img src="assets/icon/img-login.png" alt=""></img>
         </div>
@@ -55,12 +89,11 @@ const Login: React.FC = () => {
           }}
           validationSchema={validationSchema}
           onSubmit={(values) => {
-            if (
-              values.cedula === "0924068620" &&
-              values.contrasena === "prueba"
-            ) {
+            cedula = values.cedula;
+            clave = values.contrasena;
+            checkUser();
+            if (localStorage.getItem("userId")) {
               history.push("/home");
-              localStorage.setItem("userId", values.cedula);
             } else setShowAlert(true);
           }}
         >
@@ -132,3 +165,42 @@ export default Login;
                 })
               );
             */
+/**
+            * 
+            * onSubmit={(values) => {
+
+            if (
+              values.cedula === "0924068620" &&
+              values.contrasena === "prueba"
+            ) {
+              history.push("/home");
+              localStorage.setItem("userId", values.cedula);
+            } else setShowAlert(true);
+          }}
+
+           if (checkUser(values)) {
+              //history.push("/home");
+              console.log("home");
+              localStorage.setItem("userId", currentUser.id);
+           
+          }
+            */
+/**
+ *  usersArray.map((user: User) => {
+              console.log(user);
+              if (
+                user.cedula === values.cedula &&
+                user.clave === values.contrasena
+              ) {
+                console.log(values.cedula);
+                currentUser.id = user.id;
+                currentUser.nombres = user.nombres;
+                currentUser.apellidos = user.apellidos;
+                currentUser.cedula = user.cedula;
+                currentUser.clave = user.clave;
+                console.log(currentUser);
+                console.log("home");
+                localStorage.setItem("userId", currentUser.id);
+              } else setShowAlert(true);
+            });
+ */

@@ -20,16 +20,15 @@ import IRedDeApoyoData from "../types/red_apoyo_data.type";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { searchContactById, getId } from "../services/red_apoyo_service";
-
 import axios from "axios";
 
 const EditarContactos: React.FC = () => {
-  const API_URL = "https://salty-dusk-19882.herokuapp.com/api/v1/usuarios";
+  const API_URL = "http://localhost:3000/contactos";
   const { id } = useParams<{ id: string }>();
   const [nombres, setNombres] = useState<string>("");
   const [apellido, setApellido] = useState<string>("");
-  const [direccion, setDireccion] = useState<any>("");
-  const [parentesco, setParentesco] = useState<any>("");
+  const [direccion, setDireccion] = useState<any | null>("");
+  const [vinculo, setVinculo] = useState<any | null>("");
   const [telefono, setTelefono] = useState<any>("");
   const [ciudad, setCiudad] = useState<any>("");
 
@@ -46,16 +45,22 @@ const EditarContactos: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getCurso();
+    getContact();
   }, []);
 
-  const getCurso = async () => {
+  const config = {
+    headers: {
+      "Content-type": "application/json",
+    },
+  };
+
+  const getContact = async () => {
     let result = await getId(id);
     if (result) {
       setNombres(result.data.nombres);
       setApellido(result.data.apellidos);
       setDireccion(result.data.direccion);
-      setParentesco(result.data.parentesco);
+      setVinculo(result.data.vinculo);
       setTelefono(result.data.telefono);
       setCiudad(result.data.ciudad);
     }
@@ -67,31 +72,28 @@ const EditarContactos: React.FC = () => {
    * @param data
    */
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    if (data === null) {
-      setMessage("¡Tu contacto se ha guardado correctamente!");
-      setIsSent(true);
-      reset();
-      history.push("/redDeApoyo");
-    }
-
-    axios
-      .put(API_URL + "/" + id, data)
+  const onSubmit = handleSubmit(async (data: any) => {
+    if (data === null) history.push("/redDeApoyo");
+    reset();
+    await axios
+      .put(API_URL + "/" + id, data, config)
       .then((response) => {
         if (response.data) {
           setMessage("¡Tu contacto se ha actualizado correctamente!");
           console.log(response.data);
           setIsSent(true);
-          reset();
+        } else {
+          setMessage("No hay cambios");
           history.push("/redDeApoyo");
         }
+
+        history.push("/redDeApoyo");
       })
       .catch((error) => {
-        console.log(error.response.data);
+        console.log(error.response);
+        setLoading(false);
       });
-    //alert(JSON.stringify(data, null, 2));
-  };
+  });
 
   return (
     <IonPage>
@@ -110,12 +112,13 @@ const EditarContactos: React.FC = () => {
           </IonButtons>
         </div>
         <br />
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* === ION INPUT === */}
+
+        <form onSubmit={onSubmit}>
           <IonItem>
             <IonLabel>Nombre</IonLabel>
             <IonInput
               value={nombres}
+              id="nombres"
               onIonChange={(e) => setNombres(e.detail.value!)}
               {...register("nombres", {
                 required: "Un nombre es requerido",
@@ -126,6 +129,7 @@ const EditarContactos: React.FC = () => {
             <IonLabel>Apellido</IonLabel>
             <IonInput
               value={apellido}
+              id="apellido"
               onIonChange={(e) => setApellido(e.detail.value!)}
               {...register("apellidos", {
                 required: "Un apellido es requerido",
@@ -139,6 +143,7 @@ const EditarContactos: React.FC = () => {
               className="ion-text-left"
               type="tel"
               value={telefono}
+              id="telefono"
               onIonChange={(e) => setTelefono(e.detail.value!)}
               {...register("telefono")}
             ></IonInput>
@@ -147,6 +152,7 @@ const EditarContactos: React.FC = () => {
             <IonLabel>Dirección</IonLabel>
             <IonInput
               value={direccion}
+              id="direccion"
               onIonChange={(e) => setDireccion(e.detail.value!)}
               {...register("direccion")}
             />
@@ -155,6 +161,7 @@ const EditarContactos: React.FC = () => {
             <IonLabel>Ciudad</IonLabel>
             <IonInput
               value={ciudad}
+              id="ciudad"
               onIonChange={(e) => setCiudad(e.detail.value!)}
               {...register("ciudad")}
             />
@@ -162,10 +169,11 @@ const EditarContactos: React.FC = () => {
           <IonItem>
             <IonLabel>Vínculo</IonLabel>
             <IonInput
-              value={parentesco}
-              onIonChange={(e) => setParentesco(e.detail.value!)}
-              {...register("parentesco", {
-                required: "Un parentesco es requerido",
+              value={vinculo}
+              id="vinculo"
+              onIonChange={(e) => setVinculo(e.detail.value!)}
+              {...register("vinculo", {
+                required: "Un vínculo es requerido",
               })}
             />
           </IonItem>
@@ -194,3 +202,20 @@ export default EditarContactos;
   const [parentesco, setParentesco] = useState<string>("");
   const [telefono, setTelefono] = useState<string>("");
  */
+
+/*axios
+      .put(API_URL + "/" + id, data, config)
+      .then((response) => {
+        console.log(response);
+        if (response.data) {
+          setMessage("¡Tu contacto se ha actualizado correctamente!");
+          console.log(response.data);
+          setIsSent(true);
+          reset();
+          history.push("/redDeApoyo");
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });*/
+//alert(JSON.stringify(data, null, 2));

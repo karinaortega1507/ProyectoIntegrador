@@ -77,7 +77,7 @@ const AgregarContactos: React.FC = () => {
                   <IonLabel position="floating">Nombres</IonLabel>
                   <IonInput
                     type="text"
-                    {...register("nombre", {
+                    {...register("nombres", {
                       required: "Un nombre es requerido",
                     })}
                   ></IonInput>
@@ -132,8 +132,8 @@ const AgregarContactos: React.FC = () => {
                   <IonLabel position="floating">Vínculo</IonLabel>
                   <IonInput
                     type="text"
-                    {...register("parentesco", {
-                      required: "Un parentesco es requerido",
+                    {...register("vinculo", {
+                      required: "Un vínculo es requerido",
                     })}
                   ></IonInput>
                 </IonItem>

@@ -1,9 +1,10 @@
-ion-label {
+.texto {
     color:  #B047CF;
     font-weight: bold;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: center;
     font-style: normal;
+    margin-top: 26em;
   }
 
   ion-content {
@@ -11,14 +12,19 @@ ion-label {
     
   }
 
-  .container{
+  ion-row{
     align-items: center;
     display: flex;
     justify-content: center;
 }
 
   .yanapaway {
-    font-size: 3.5em;
+    color:  #B047CF;
+    font-weight: bold;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    font-style: normal;
+    font-size: 2.8em;
     position: absolute;
     margin-top: 5.5em;
     
@@ -31,9 +37,9 @@ ion-label {
     top: 15em;
   }
   .usa-tu-voz{
-    font-size: 2em;
-    position: relative;
+    font-size: 1.5em;
+    /*position: relative;
     width: 10em;
     height: 10em;
-    top: 20em;
+    top: 18em;*/
   }

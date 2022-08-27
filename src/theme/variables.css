@@ -2,7 +2,13 @@
 http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
+
+ion-button {
+  text-transform: none;
+ }
 :root {
+  
+
   /** primary **/
   --ion-color-primary: #b049d0;
   --ion-color-primary-rgb: 176, 73, 208;

@@ -5,7 +5,6 @@ import {
   IonLabel,
   IonMenuButton,
   IonPage,
-  IonToast,
   useIonLoading,
 } from "@ionic/react";
 import { useEffect, useState } from "react";
@@ -104,23 +103,23 @@ const Dispositivo: React.FC = () => {
             <>
               <br />
               <br />
-              <IonButton expand="block" fill="solid">
+              <IonButton expand="block" fill="solid" shape="round">
                 Conectado
               </IonButton>
             </>
           )}
         </div>
-
-        <IonToast
-          isOpen={showToast}
-          onDidDismiss={() => setShowToast(false)}
-          color="medium"
-          message="Conectado a XIAO BLE SENSE"
-          duration={1000}
-        />
+        <p className="text">Batería</p>
       </IonContent>
     </IonPage>
   );
 };
 
 export default Dispositivo;
+/**<IonToast
+          isOpen={showToast}
+          onDidDismiss={() => setShowToast(false)}
+          color="medium"
+          message="Conectado a XIAO BLE SENSE"
+          duration={1000}
+        /> */

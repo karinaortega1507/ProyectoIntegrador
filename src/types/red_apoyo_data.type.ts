@@ -5,5 +5,5 @@ export default interface IRedDeApoyoData {
     telefono:string;
     ciudad?: string,
     direccion?: string, 
-    parentesco?: string
+    vinculo: string
   }

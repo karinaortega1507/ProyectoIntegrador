@@ -1,22 +1,22 @@
 .icon-info{
     position: absolute;
-    width: 64vw;
-    height: 23vh;
-    left: 4.3em;
-    top: 6.5em;
+    width: 50vw;
+    height: 18vh;
+    left: 6.6em;
+    top: 5.5em;
     background: #FFC745;
     border-radius: 30px;
 }
 .img-icon-home{
     position: relative;
-    width: 38vw;
-    height: 21vh;
-    margin-left: 2.8rem;
-    margin-top: 0.3rem;
+    width: 34vw;
+    height: 15vh;
+    margin-left: -0.2rem;
+    margin-top: 0.8rem;
     padding: 0.5rem;
 }
 .txt-info{
-    margin-top: 25.5em;
+    margin-top: 20.5em;
     position: absolute;
     font-family: 'Karla';
     font-style: normal;
@@ -30,7 +30,7 @@
 }
 .info-content{
     position: absolute;
-    margin-top: 30em;
+    margin-top: 25em;
     font-family: 'Karla';
     font-style: normal;
     font-weight: 800;
@@ -50,16 +50,16 @@
 
 .icon-seg{
     position: absolute;
-    width: 64vw;
-    height: 22vh;
-    left: 4.3em;
-    top: 28em;
+    width: 50vw;
+    height: 18vh;
+    left: 6.6em;
+    top: 24em;
     background: #6FEBFF;
     border-radius: 30px;
 }
 
 .txt-seg{
-    margin-top: 58em;
+    margin-top: 48em;
     position: absolute;
     font-family: 'Karla';
     font-style: normal;
@@ -75,7 +75,7 @@
 }
 .seg-content{
     position: absolute;
-    margin-top: 62.5em;
+    margin-top: 52.5em;
     font-family: 'Karla';
     font-style: normal;
     font-weight: 800;

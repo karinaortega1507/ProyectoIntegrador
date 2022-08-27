@@ -9,11 +9,26 @@ import {
   IonMenu,
   IonMenuToggle,
   IonNote,
-} from '@ionic/react';
+} from "@ionic/react";
 
-import { useLocation } from 'react-router-dom';
-import { analyticsOutline, analyticsSharp, exitOutline, exitSharp, heartCircleOutline, heartCircleSharp, helpCircleOutline, helpCircleSharp, informationCircleOutline, informationCircleSharp, peopleOutline, peopleSharp, settingsOutline, settingsSharp } from 'ionicons/icons';
-import './Menu.css';
+import { useLocation } from "react-router-dom";
+import {
+  analyticsOutline,
+  analyticsSharp,
+  exitOutline,
+  exitSharp,
+  heartCircleOutline,
+  heartCircleSharp,
+  helpCircleOutline,
+  helpCircleSharp,
+  informationCircleOutline,
+  informationCircleSharp,
+  peopleOutline,
+  peopleSharp,
+  settingsOutline,
+  settingsSharp,
+} from "ionicons/icons";
+import "./Menu.css";
 
 interface AppPage {
   url: string;
@@ -24,50 +39,42 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: 'Dispositivo',
-    url: '/dispositivo',
+    title: "Dispositivo",
+    url: "/dispositivo",
     iosIcon: heartCircleOutline,
-    mdIcon: heartCircleSharp
+    mdIcon: heartCircleSharp,
   },
   {
-    title: 'Seguimiento',
-    url: '/seguimiento',
+    title: "Seguimiento",
+    url: "/seguimiento",
     iosIcon: analyticsOutline,
-    mdIcon: analyticsSharp
+    mdIcon: analyticsSharp,
   },
   {
-    title: 'Información',
-    url: '/informacion',
+    title: "Información",
+    url: "/informacion",
     iosIcon: informationCircleOutline,
-    mdIcon: informationCircleSharp
+    mdIcon: informationCircleSharp,
   },
   {
-    title: 'Red de Apoyo',
-    url: '/redDeApoyo',
+    title: "Red de Apoyo",
+    url: "/redDeApoyo",
     iosIcon: peopleOutline,
-    mdIcon: peopleSharp
+    mdIcon: peopleSharp,
   },
   {
-    title: 'Ayuda',
-    url: '/ayuda',
+    title: "Ayuda",
+    url: "/ayuda",
     iosIcon: helpCircleOutline,
-    mdIcon: helpCircleSharp
+    mdIcon: helpCircleSharp,
   },
   {
-    title: 'Configuración',
-    url: '/configuracion',
-    iosIcon: settingsOutline,
-    mdIcon: settingsSharp
-  },
-  {
-    title: 'Salir',
-    url: '/',
+    title: "Salir",
+    url: "/",
     iosIcon: exitOutline,
-    mdIcon: exitSharp
-  }
+    mdIcon: exitSharp,
+  },
 ];
-
-
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -75,28 +82,38 @@ const Menu: React.FC = () => {
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
-              
         <IonList id="inbox-list">
           <IonListHeader>
             <IonItem>
-            <IonAvatar>
-              <img src="/assets/avatar.png" />
-            </IonAvatar>
-          </IonItem>
+              <IonAvatar>
+                <img src="/assets/avatar.png" />
+              </IonAvatar>
+            </IonItem>
           </IonListHeader>
           <IonNote>Susana Delgado</IonNote>
           {appPages.map((appPage, index) => {
             return (
               <IonMenuToggle key={index} autoHide={false}>
-                <IonItem className={location.pathname === appPage.url ? 'selected' : ''} routerLink={appPage.url} routerDirection="none" lines="none" detail={false}>
-                  <IonIcon slot="start" ios={appPage.iosIcon} md={appPage.mdIcon}/>
+                <IonItem
+                  className={
+                    location.pathname === appPage.url ? "selected" : ""
+                  }
+                  routerLink={appPage.url}
+                  routerDirection="none"
+                  lines="none"
+                  detail={false}
+                >
+                  <IonIcon
+                    slot="start"
+                    ios={appPage.iosIcon}
+                    md={appPage.mdIcon}
+                  />
                   <IonLabel dir="start">{appPage.title}</IonLabel>
                 </IonItem>
               </IonMenuToggle>
             );
           })}
         </IonList>
-
       </IonContent>
     </IonMenu>
   );

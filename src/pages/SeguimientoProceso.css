@@ -1,6 +1,12 @@
-ion-label {
-    font-style: 1.5em;
-  }
+
+  .text-title-seg{
+    color:#242323;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+}
 
   ion-text{
     font-size:1em
