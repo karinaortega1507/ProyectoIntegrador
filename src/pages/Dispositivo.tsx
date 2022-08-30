@@ -109,7 +109,6 @@ const Dispositivo: React.FC = () => {
             </>
           )}
         </div>
-        <p className="text">Batería</p>
       </IonContent>
     </IonPage>
   );

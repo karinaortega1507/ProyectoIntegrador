@@ -24,7 +24,7 @@ import "./RedDeApoyo.css";
 
 const RedDeApoyo: React.FC = () => {
   const API_URL = "http://localhost:3000/contactos";
-  //const { id } = useParams<{ id: string }>();
+  //const API_URL = "https://apis-femicides.herokuapp.com/api/v1/redapoyos/";
   const history = useHistory();
   const [isSent, setIsSent] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
@@ -41,6 +41,8 @@ const RedDeApoyo: React.FC = () => {
   useIonViewDidEnter(async () => {
     try {
       //fetch and get CONTACTS
+      const userId = localStorage.getItem("userId");
+      //const result = await authAxios.get(API_URL + "usuario/" + userId);
       const result = await authAxios.get(API_URL);
       console.log(result.data);
       setState({ contactos: result.data });
@@ -93,7 +95,7 @@ const RedDeApoyo: React.FC = () => {
         </IonItem>
         <IonCardContent>
           <p>
-            <b>Teléfono:</b> {user.telefono}
+            <b>Teléfono:</b> {user.celular}
           </p>
           <p>
             <b>Dirección:</b> {user.direccion}
@@ -102,7 +104,7 @@ const RedDeApoyo: React.FC = () => {
             <b>Ciudad:</b> {user.ciudad}
           </p>
           <p>
-            <b>Vínculo:</b> {user.vinculo}
+            <b>Vínculo:</b> {user.parentesco}
           </p>
         </IonCardContent>
       </IonCard>
@@ -144,6 +146,7 @@ const RedDeApoyo: React.FC = () => {
               routerLink="/agregar-contactos"
               expand="block"
               fill="solid"
+              shape="round"
             >
               Agregar
             </IonButton>
@@ -155,68 +158,3 @@ const RedDeApoyo: React.FC = () => {
 };
 
 export default RedDeApoyo;
-
-/**
-  const EditarContacto = (user: IRedDeApoyoData) => {
-    presentAlert({
-      header: "Editar contacto",
-      buttons: ["OK"],
-      inputs: [
-        {
-          value: `${user.nombre}`,
-          handler: (value) => {
-            setNombre(value);
-            console.log(nombre);
-          },
-        },
-        {
-          value: `${user.apellidos}`,
-          attributes: {
-            maxlength: 8,
-          },
-          handler: (value) => {
-            setApellido(value);
-            console.log(apellido);
-          },
-        },
-        {
-          value: `${user.telefono}`,
-          attributes: {
-            maxlength: 10,
-          },
-          handler: (value) => {
-            setTelefono(value);
-            console.log(telefono);
-          },
-        },
-        {
-          value: `${user.direccion}`,
-          handler: (value) => {
-            setDireccion(value);
-            console.log(direccion);
-          },
-        },
-        {
-          value: `${user.ciudad}`,
-          handler: (value) => {
-            setCiudad(value);
-            console.log(ciudad);
-          },
-        },
-        {
-          value: `${user.parentesco}`,
-          handler: (value) => {
-            setParentesco(JSON.stringify(value));
-            console.log(parentesco);
-          },
-        },
-      ],
-    });
-  }; 
-  
-  onClick={() => {
-              eliminarContacto();
-            }}*/
-/**
- *
- */

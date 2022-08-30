@@ -20,22 +20,28 @@ import "./AgregarContactos.css";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import IRedDeApoyoData from "../types/red_apoyo_data.type";
 
 const AgregarContactos: React.FC = () => {
   const API_URL = "http://localhost:3000/contactos";
+  //const API_URL = "https://apis-femicides.herokuapp.com/api/v1/redapoyos";
   const [isSent, setIsSent] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+
+  const idUsuario = localStorage.getItem("userId");
+  console.log("idUsuario ", idUsuario);
   const history = useHistory();
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm<IRedDeApoyoData>();
 
-  //const onSubmit = (data: any) => console.log(data);
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: IRedDeApoyoData) => {
+    console.log("data " + data);
+    if (idUsuario != null) data.idUsuario = idUsuario;
+    else console.log("idUsiario es null o no se ha asignado");
     axios
       .post(API_URL, data)
       .then((response) => {
@@ -103,7 +109,7 @@ const AgregarContactos: React.FC = () => {
                   <IonLabel position="floating">Teléfono</IonLabel>
                   <IonInput
                     type="text"
-                    {...register("telefono", {
+                    {...register("celular", {
                       required: "Un número de teléfono es requerido",
                     })}
                   ></IonInput>
@@ -132,7 +138,7 @@ const AgregarContactos: React.FC = () => {
                   <IonLabel position="floating">Vínculo</IonLabel>
                   <IonInput
                     type="text"
-                    {...register("vinculo", {
+                    {...register("parentesco", {
                       required: "Un vínculo es requerido",
                     })}
                   ></IonInput>

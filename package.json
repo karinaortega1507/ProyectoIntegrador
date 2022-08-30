@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@awesome-cordova-plugins/ble": "^5.44.0",
-    "@capacitor-community/bluetooth-le": "^2.0.0",
     "@capacitor/android": "3.6.0",
     "@capacitor/app": "1.1.1",
     "@capacitor/core": "3.6.0",
@@ -78,5 +77,8 @@
     "@capacitor/cli": "3.6.0",
     "react-scripts": "5.0.1"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "resolutions": {
+    "@types/eslint": "8.4.3"
+  }
 }

@@ -24,7 +24,7 @@ const validationSchema = yup.object({
   contrasena: yup
     .string()
     .nullable()
-    .min(5, "Contraseña incorrecta")
+    .min(3, "Contraseña incorrecta")
     .required("Contraseña es requerida"),
 });
 
@@ -36,7 +36,7 @@ interface User {
   clave: string;
 }
 
-const API_URL = "http://localhost:3000/user";
+const API_URL = "https://apis-femicides.herokuapp.com/api/v1/usuarios/";
 
 const Login: React.FC = () => {
   let cedula: any;
@@ -57,9 +57,13 @@ const Login: React.FC = () => {
   });
 
   const checkUser = () => {
+    console.log("cedula " + cedula + "clave " + clave);
     state.usersArray.map((user: User) => {
       if (user.cedula === cedula && user.clave === clave) {
+        console.log("id " + user.id);
         localStorage.setItem("userId", user.id);
+        localStorage.setItem("userFirstName", user.nombres);
+        localStorage.setItem("userLastName", user.apellidos);
       }
     });
   };
@@ -67,8 +71,12 @@ const Login: React.FC = () => {
   return (
     <IonPage className="ion-padding">
       <IonContent scroll-y="false">
-        <div className="img-login">
-          <img src="assets/icon/img-login.png" alt=""></img>
+        <div>
+          <img
+            className="img-login"
+            src="assets/icon/img-login.png"
+            alt=""
+          ></img>
         </div>
         <br />
         <br />

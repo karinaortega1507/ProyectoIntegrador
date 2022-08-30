@@ -15,6 +15,7 @@ export async function searchContactById(id: string) {
 }
 
 export async function getId(id: string) {
+  //return await http.get<IRedDeApoyoData>(`https://apis-femicides.herokuapp.com/api/v1/redapoyos/${id}`);
   return await http.get<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
 }
 

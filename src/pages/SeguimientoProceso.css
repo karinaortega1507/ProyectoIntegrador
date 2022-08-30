@@ -9,7 +9,7 @@
 }
 
   ion-text{
-    font-size:1em
+    font-size:0.8em
   }
 .container{
     align-items: center;
@@ -19,19 +19,26 @@
 }
 .button-option{
     margin-right: 1.5em;
-    width: 40vw;
+    width: 44vw;
     height: 3.7vh;
-
+    font-size: small;
+}
+.button-option-medica{
+    margin-right: 0.5em;
+    width: 44vw;
+    height: 3.7vh;
+    font-size: small;
 }
 .button-valoracion{
     margin-right: 0.5em;
     width: 44vw;
     height: 3.7vh;
-
+    font-size: small;
 }
 .button-mProteccion{
-    width: 70vw;
+    width: 76vw;
     height: 3.7vh;
+    font-size: small;
 }
 
 .vector-position{

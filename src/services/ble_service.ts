@@ -1,18 +1,18 @@
 
-//import { BLE } from '@awesome-cordova-plugins/ble';
+import { BLE } from '@awesome-cordova-plugins/ble';
 
-import { BleClient, numbersToDataView, numberToUUID } from '@capacitor-community/bluetooth-le';
+//import { BleClient, numbersToDataView, numberToUUID } from '@capacitor-community/bluetooth-le';
 
 const HEART_RATE_SERVICE = '0000180d-0000-1000-8000-00805f9b34fb';//19B10000-E8F2-537E-4F6C-D104768A1214
 const HEART_RATE_MEASUREMENT_CHARACTERISTIC = '00002a37-0000-1000-8000-00805f9b34fb';
 const BODY_SENSOR_LOCATION_CHARACTERISTIC = '00002a38-0000-1000-8000-00805f9b34fb';
-const BATTERY_SERVICE = numberToUUID(0x180f);
-const BATTERY_CHARACTERISTIC = numberToUUID(0x2a19);
+//const BATTERY_SERVICE = numberToUUID(0x180f);
+//const BATTERY_CHARACTERISTIC = numberToUUID(0x2a19);
 const POLAR_PMD_SERVICE = 'fb005c80-02e7-f387-1cad-8acd2d8df0c8';
 const POLAR_PMD_CONTROL_POINT = 'fb005c81-02e7-f387-1cad-8acd2d8df0c8';
 
-export async function main(): Promise<void> {
-  try {
+export async function main(): Promise<void> {}
+  /*try {
     await BleClient.initialize();
 
     const device = await BleClient.requestDevice({
@@ -28,7 +28,7 @@ export async function main(): Promise<void> {
     console.log('body sensor location', result.getUint8(0));
     
     /*await BleClient.write(device.deviceId, POLAR_PMD_SERVICE, POLAR_PMD_CONTROL_POINT, numbersToDataView([1, 0]));
-    console.log('written [1, 0] to control point');*/
+    console.log('written [1, 0] to control point');
 
 
     const battery = await BleClient.read(device.deviceId, BATTERY_SERVICE, BATTERY_CHARACTERISTIC);
@@ -69,4 +69,4 @@ function parseHeartRate(value: DataView): number {
     heartRate = value.getUint8(1);
   }
   return heartRate;
-}
+}*/

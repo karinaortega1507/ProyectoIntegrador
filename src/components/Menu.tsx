@@ -78,7 +78,13 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   const location = useLocation();
-
+  const nombres = localStorage.getItem("userFirstName");
+  const apellidos = localStorage.getItem("userLastName");
+  const borrarLocalStorage = () => {
+    //localStorage.removeItem("userId");
+    localStorage.removeItem("userFirstName");
+    localStorage.removeItem("userLastName");
+  };
   return (
     <IonMenu contentId="main" type="overlay">
       <IonContent>
@@ -90,8 +96,11 @@ const Menu: React.FC = () => {
               </IonAvatar>
             </IonItem>
           </IonListHeader>
-          <IonNote>Susana Delgado</IonNote>
+          <IonNote>
+            {nombres} {apellidos}
+          </IonNote>
           {appPages.map((appPage, index) => {
+            if (location.pathname === "/") borrarLocalStorage();
             return (
               <IonMenuToggle key={index} autoHide={false}>
                 <IonItem

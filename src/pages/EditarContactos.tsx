@@ -24,6 +24,7 @@ import axios from "axios";
 
 const EditarContactos: React.FC = () => {
   const API_URL = "http://localhost:3000/contactos";
+  //const API_URL = "https://apis-femicides.herokuapp.com/api/v1/redapoyos";
   const { id } = useParams<{ id: string }>();
   const [nombres, setNombres] = useState<string>("");
   const [apellido, setApellido] = useState<string>("");
@@ -31,6 +32,7 @@ const EditarContactos: React.FC = () => {
   const [vinculo, setVinculo] = useState<any | null>("");
   const [telefono, setTelefono] = useState<any>("");
   const [ciudad, setCiudad] = useState<any>("");
+  const [idUsuario, setIdUsuario] = useState<any>("");
 
   const {
     register,
@@ -56,27 +58,35 @@ const EditarContactos: React.FC = () => {
 
   const getContact = async () => {
     let result = await getId(id);
+    console.log(result.data);
     if (result) {
       setNombres(result.data.nombres);
       setApellido(result.data.apellidos);
       setDireccion(result.data.direccion);
-      setVinculo(result.data.vinculo);
-      setTelefono(result.data.telefono);
+      setVinculo(result.data.parentesco);
+      setTelefono(result.data.celular);
       setCiudad(result.data.ciudad);
+      setIdUsuario(result.data.idUsuario);
     }
   };
-  //console.log(errors);
-
   /**
-   *
    * @param data
    */
 
-  const onSubmit = handleSubmit(async (data: any) => {
+  const onSubmit = handleSubmit(async (data: IRedDeApoyoData) => {
     if (data === null) history.push("/redDeApoyo");
-    reset();
+    console.log("data " + JSON.stringify(data));
+    let nwData: IRedDeApoyoData = JSON.parse(JSON.stringify(data));
+    nwData.nombres = nombres;
+    nwData.apellidos = apellido;
+    nwData.celular = telefono;
+    nwData.direccion = direccion;
+    nwData.ciudad = ciudad;
+    nwData.parentesco = vinculo;
+    nwData.idUsuario = idUsuario;
+    console.log("nwData " + nwData);
     await axios
-      .put(API_URL + "/" + id, data, config)
+      .put(API_URL + "/" + id, nwData, config)
       .then((response) => {
         if (response.data) {
           setMessage("¡Tu contacto se ha actualizado correctamente!");
@@ -115,7 +125,9 @@ const EditarContactos: React.FC = () => {
 
         <form onSubmit={onSubmit}>
           <IonItem>
-            <IonLabel>Nombre</IonLabel>
+            <IonLabel>
+              <b>Nombre</b>
+            </IonLabel>
             <IonInput
               value={nombres}
               id="nombres"
@@ -126,7 +138,9 @@ const EditarContactos: React.FC = () => {
             />
           </IonItem>
           <IonItem>
-            <IonLabel>Apellido</IonLabel>
+            <IonLabel>
+              <b>Apellido</b>
+            </IonLabel>
             <IonInput
               value={apellido}
               id="apellido"
@@ -138,18 +152,22 @@ const EditarContactos: React.FC = () => {
           </IonItem>
 
           <IonItem>
-            <IonLabel>Teléfono</IonLabel>
+            <IonLabel>
+              <b>Teléfono</b>{" "}
+            </IonLabel>
             <IonInput
               className="ion-text-left"
               type="tel"
               value={telefono}
-              id="telefono"
+              id="celular"
               onIonChange={(e) => setTelefono(e.detail.value!)}
-              {...register("telefono")}
+              {...register("celular")}
             ></IonInput>
           </IonItem>
           <IonItem>
-            <IonLabel>Dirección</IonLabel>
+            <IonLabel>
+              <b>Dirección</b>
+            </IonLabel>
             <IonInput
               value={direccion}
               id="direccion"
@@ -158,7 +176,9 @@ const EditarContactos: React.FC = () => {
             />
           </IonItem>
           <IonItem>
-            <IonLabel>Ciudad</IonLabel>
+            <IonLabel>
+              <b>Ciudad</b>
+            </IonLabel>
             <IonInput
               value={ciudad}
               id="ciudad"
@@ -167,12 +187,14 @@ const EditarContactos: React.FC = () => {
             />
           </IonItem>
           <IonItem>
-            <IonLabel>Vínculo</IonLabel>
+            <IonLabel>
+              <b>Vínculo</b>
+            </IonLabel>
             <IonInput
               value={vinculo}
-              id="vinculo"
+              id="parentesco"
               onIonChange={(e) => setVinculo(e.detail.value!)}
-              {...register("vinculo", {
+              {...register("parentesco", {
                 required: "Un vínculo es requerido",
               })}
             />
@@ -192,30 +214,3 @@ const EditarContactos: React.FC = () => {
 };
 
 export default EditarContactos;
-
-/**
- * 
-  const [nombre, setNombre] = useState<string>("");
-  const [apellido, setApellido] = useState<string>("");
-  const [direccion, setDireccion] = useState<string>("");
-  const [ciudad, setCiudad] = useState<string>("");
-  const [parentesco, setParentesco] = useState<string>("");
-  const [telefono, setTelefono] = useState<string>("");
- */
-
-/*axios
-      .put(API_URL + "/" + id, data, config)
-      .then((response) => {
-        console.log(response);
-        if (response.data) {
-          setMessage("¡Tu contacto se ha actualizado correctamente!");
-          console.log(response.data);
-          setIsSent(true);
-          reset();
-          history.push("/redDeApoyo");
-        }
-      })
-      .catch((error) => {
-        console.log(error.response.data);
-      });*/
-//alert(JSON.stringify(data, null, 2));
