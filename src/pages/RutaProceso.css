@@ -8,7 +8,7 @@
 }
 
 .img-denuncia{
-    width: 27vw;
+    width: 23vw;
     position: absolute;
     height: 25vh;
     left: 2em;
@@ -17,65 +17,72 @@
 }
 .img-curva{
     position: absolute;
-    left: 12.8em;
-    top: 5.6em;
-    width: 32vw;
-    height: 21vh;
+    left: 11em;
+    top: 5.3em;
+    width: 28vw;
+    height: 18vh;
 }
 .img-denuncia-txt{
-    font-size: 1.3em;
-    top: 5.8em;
+    font-size: 1.1em;
+    top: 6em;
     left: 6em;
     position: absolute;
+    font-weight: bold;
 }
 .img-asistencia-txt{
-    font-size: 1.3em;
-    top: 12.5em;
+    font-size: 1.1em;
+    top: 13.5em;
     left: 3.5em;
     position: absolute;
+    font-weight: bold;
 }
 .img-ambulancia{
     width: 41vw;
     position: absolute;
     height: 41vh;
-    left: 6.7em;
-    top: 3.5em;
+    left: 6.2em;
+    top: 3.2em;
 
 }
 .img-curva1{
     position: absolute;
     left: 3.8em;
-    top: 17em;
-    width: 34vw;
-    height: 25vh;
+    top: 16.2em;
+    width: 29vw;
+    height: 18vh;
 }
 .img-admision-txt{
-    font-size: 1.3em;
-    top: 22.4em;
-    left: 3.5em;
+    font-size: 1.1em;
+    top: 22em;
+    left: 2.5em;
     position: absolute;
+    font-weight: bold;
 }
 .img-recep-denuncia{
-    top: 28em;
-    left: 16em;
+    top: 23.3em;
+    left: 14em;
     position: absolute;
+    width: 13vw;
 }
 .img-curva2{
     position: absolute;
-    top: 30em;
-    left: 8em;                                  
-    width: 37vw;
-    height: 25vh;
+    top: 25.6em;
+    left: 7em;
+    width: 28vw;
+    height: 19vh;
 }
 .img-proteccion{
     position: absolute;
-    top: 40.5em;
+    top: 33em;
+    width: 14vw;
+    left: 3.5em;
 }
 .img-proteccion-txt{
-    font-size: 1.3em;
-    top: 32.4em;
-    left: 4.5em;
+    font-size: 1.1em;
+    top: 31.3em;
+    left: 6.5em;
     position: absolute;
+    font-weight: bold;
 }
 
 .vector-position{
@@ -95,4 +102,7 @@
     width: 99vw;
     height: 17vh;
     bottom: 0;
+}
+div.img{
+    margin-top: 1em;
 }

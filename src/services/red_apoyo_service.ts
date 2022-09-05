@@ -1,7 +1,7 @@
 import http from "../http-common";
 import IRedDeApoyoData from "../types/red_apoyo_data.type"
 
-
+let idUsuaria = localStorage.getItem("userId");
 
 export async function searchContactById(id: string) {
   let url = 'https://salty-dusk-19882.herokuapp.com/api/v1/redApoyos/' + id + '/'
@@ -14,14 +14,21 @@ export async function searchContactById(id: string) {
   return await response.json();
 }
 
-export async function getId(id: string) {
-  //return await http.get<IRedDeApoyoData>(`https://apis-femicides.herokuapp.com/api/v1/redapoyos/${id}`);
-  return await http.get<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
+export async function getContactById(idContact: string) {
+  console.log("idUsuaria", idUsuaria);
+  console.log("idContact", idContact);
+  return await http.get<IRedDeApoyoData>(`https://apis-femicides.herokuapp.com/api/v1/usuarios/${idUsuaria}/redapoyos/${idContact}`);
+  //return await http.get<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
 }
 
-export async function eliminarContacto (id:string) {
-  return await http.delete<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
+export async function eliminarContacto (idContact:string) {
+  //return await http.delete<IRedDeApoyoData>(`http://localhost:3000/contactos/${id}`);
+  return await http.delete<IRedDeApoyoData>(`https://apis-femicides.herokuapp.com/api/v1/usuarios/${idUsuaria}/redapoyos/${idContact}`);
 };
+
+export async function getEtapasUsuaria(){
+  return await http.get(`https://apis-femicides.herokuapp.com/api/v1/procesos/${idUsuaria}/etapas`);
+}
 
 
 

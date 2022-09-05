@@ -23,13 +23,14 @@ import IRedDeApoyoData from "../types/red_apoyo_data.type";
 import "./RedDeApoyo.css";
 
 const RedDeApoyo: React.FC = () => {
-  const API_URL = "http://localhost:3000/contactos";
-  //const API_URL = "https://apis-femicides.herokuapp.com/api/v1/redapoyos/";
+  //const API_URL = "http://localhost:3000/contactos";
+  const API_URL = "https://apis-femicides.herokuapp.com/api/v1/usuarios/";
   const history = useHistory();
   const [isSent, setIsSent] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
   const [areUsers, setAreUsers] = useState<boolean>();
-  const [id, setId] = useState<string>();
+  const [idContact, setIdContact] = useState<string>();
+  const userId = localStorage.getItem("userId");
   const [state, setState] = React.useState({
     contactos: [],
   });
@@ -40,10 +41,10 @@ const RedDeApoyo: React.FC = () => {
   });
   useIonViewDidEnter(async () => {
     try {
-      //fetch and get CONTACTS
-      const userId = localStorage.getItem("userId");
-      //const result = await authAxios.get(API_URL + "usuario/" + userId);
-      const result = await authAxios.get(API_URL);
+      //fetch and get CONTACTS of user
+      
+      const result = await authAxios.get(API_URL + userId +"/redapoyos" );
+      //const result = await authAxios.get(API_URL);
       console.log(result.data);
       setState({ contactos: result.data });
       console.log("result: " + result.data.length);
@@ -53,13 +54,13 @@ const RedDeApoyo: React.FC = () => {
       console.log(error);
     }
   });
-  const eliminarContacto = (id: string) => {
+  const eliminarContacto = (idContact: string) => {
     axios
-      .delete(API_URL + "/" + id)
+      .delete(API_URL + userId +"/redapoyos/" + idContact)
       .then((response) => {
-        if (response.data) {
+        console.log(response);
+        if (response) {
           setMessage("¡Tu contacto se ha eliminado correctamente!");
-          console.log(response.data);
           setIsSent(true);
         }
         history.push("/redDeApoyo");
@@ -70,21 +71,21 @@ const RedDeApoyo: React.FC = () => {
   };
   useEffect(() => {}, [state]);
 
-  const list = state.contactos.map((user: IRedDeApoyoData) => {
-    const link = `/editar-contactos/${user.id}`;
+  const list = state.contactos.map((contact: IRedDeApoyoData) => {
+    const link = `/editar-contactos/${contact.id}`;
     return (
-      <IonCard key={user.id}>
+      <IonCard key={contact.id}>
         <IonItem>
           <IonLabel>
-            {user.nombres} {user.apellidos}{" "}
+            {contact.nombres} {contact.apellidos}{" "}
           </IonLabel>
           <IonButton routerLink={link} fill="outline" slot="end">
             <IonIcon icon={createOutline}></IonIcon>
           </IonButton>
           <IonButton
             onClick={() => {
-              setId(user.id);
-              eliminarContacto(user.id);
+              setIdContact(contact.id);
+              eliminarContacto(contact.id);
             }}
             color="danger"
             fill="outline"
@@ -95,16 +96,16 @@ const RedDeApoyo: React.FC = () => {
         </IonItem>
         <IonCardContent>
           <p>
-            <b>Teléfono:</b> {user.celular}
+            <b>Teléfono:</b> {contact.celular}
           </p>
           <p>
-            <b>Dirección:</b> {user.direccion}
+            <b>Dirección:</b> {contact.direccion}
           </p>
           <p>
-            <b>Ciudad:</b> {user.ciudad}
+            <b>Ciudad:</b> {contact.ciudad}
           </p>
           <p>
-            <b>Vínculo:</b> {user.parentesco}
+            <b>Vínculo:</b> {contact.parentesco}
           </p>
         </IonCardContent>
       </IonCard>

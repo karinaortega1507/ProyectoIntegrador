@@ -19,12 +19,12 @@ import "./EditarContactos.css";
 import IRedDeApoyoData from "../types/red_apoyo_data.type";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { searchContactById, getId } from "../services/red_apoyo_service";
+import { searchContactById, getContactById } from "../services/red_apoyo_service";
 import axios from "axios";
 
 const EditarContactos: React.FC = () => {
-  const API_URL = "http://localhost:3000/contactos";
-  //const API_URL = "https://apis-femicides.herokuapp.com/api/v1/redapoyos";
+  //const API_URL = "http://localhost:3000/contactos";
+  const API_URL = "https://apis-femicides.herokuapp.com/api/v1/usuarios/";
   const { id } = useParams<{ id: string }>();
   const [nombres, setNombres] = useState<string>("");
   const [apellido, setApellido] = useState<string>("");
@@ -32,8 +32,7 @@ const EditarContactos: React.FC = () => {
   const [vinculo, setVinculo] = useState<any | null>("");
   const [telefono, setTelefono] = useState<any>("");
   const [ciudad, setCiudad] = useState<any>("");
-  const [idUsuario, setIdUsuario] = useState<any>("");
-
+  const idUsuaria= localStorage.getItem("userId");
   const {
     register,
     handleSubmit,
@@ -57,7 +56,7 @@ const EditarContactos: React.FC = () => {
   };
 
   const getContact = async () => {
-    let result = await getId(id);
+    let result = await getContactById(id);
     console.log(result.data);
     if (result) {
       setNombres(result.data.nombres);
@@ -66,7 +65,6 @@ const EditarContactos: React.FC = () => {
       setVinculo(result.data.parentesco);
       setTelefono(result.data.celular);
       setCiudad(result.data.ciudad);
-      setIdUsuario(result.data.idUsuario);
     }
   };
   /**
@@ -83,10 +81,9 @@ const EditarContactos: React.FC = () => {
     nwData.direccion = direccion;
     nwData.ciudad = ciudad;
     nwData.parentesco = vinculo;
-    nwData.idUsuario = idUsuario;
     console.log("nwData " + nwData);
     await axios
-      .put(API_URL + "/" + id, nwData, config)
+      .put(API_URL + idUsuaria + "/redapoyos/" + id, nwData, config)
       .then((response) => {
         if (response.data) {
           setMessage("¡Tu contacto se ha actualizado correctamente!");

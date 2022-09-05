@@ -23,8 +23,8 @@ import { useHistory } from "react-router";
 import IRedDeApoyoData from "../types/red_apoyo_data.type";
 
 const AgregarContactos: React.FC = () => {
-  const API_URL = "http://localhost:3000/contactos";
-  //const API_URL = "https://apis-femicides.herokuapp.com/api/v1/redapoyos";
+  //const API_URL = "http://localhost:3000/contactos";
+  const API_URL = "https://apis-femicides.herokuapp.com/api/v1/usuarios/";
   const [isSent, setIsSent] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
@@ -40,10 +40,8 @@ const AgregarContactos: React.FC = () => {
 
   const onSubmit = (data: IRedDeApoyoData) => {
     console.log("data " + data);
-    if (idUsuario != null) data.idUsuario = idUsuario;
-    else console.log("idUsiario es null o no se ha asignado");
     axios
-      .post(API_URL, data)
+      .post(API_URL + idUsuario + "/redapoyos", data)
       .then((response) => {
         if (response.data) {
           setMessage("¡Tu contacto se ha guardado correctamente!");

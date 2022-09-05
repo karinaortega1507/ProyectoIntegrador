@@ -6,6 +6,5 @@ export default interface IRedDeApoyoData {
     ciudad?: string,
     direccion?: string, 
     parentesco: string,
-    idUsuario: string
   }
 

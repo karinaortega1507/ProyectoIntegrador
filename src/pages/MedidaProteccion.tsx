@@ -20,7 +20,8 @@ const MedidaProteccion: React.FC = () => {
             <IonLabel className="text-title">Medidas de Protección</IonLabel>
           </IonButtons>
         </div>
-        <br />
+        <br /> 
+        <div className="container-card">
         <div className="card-1">
           <img className="img-icon" src="assets/icon/no.png" alt=""></img>
           <p className="text-content">
@@ -29,6 +30,7 @@ const MedidaProteccion: React.FC = () => {
             encuentre.
           </p>
         </div>
+        <br /><br /><br />
         <div className="card-2">
           <img
             className="img-icon"
@@ -41,6 +43,7 @@ const MedidaProteccion: React.FC = () => {
             o a través de terceros.
           </p>
         </div>
+        <br /><br /><br />
         <div className="card-3">
           <img className="img-icon" src="assets/icon/boleta.png" alt=""></img>
           <p className="text-content">
@@ -48,6 +51,7 @@ const MedidaProteccion: React.FC = () => {
             miembros del núcleo familiar.
           </p>
         </div>
+        <br /><br /><br />
         <div className="card-4">
           <img className="img-icon" src="assets/icon/fuera.png" alt=""></img>
           <p className="text-content">
@@ -56,6 +60,7 @@ const MedidaProteccion: React.FC = () => {
             o sexual de la víctima.
           </p>
         </div>
+        <br /><br /><br />
         <div className="card-5">
           <img
             className="img-icon"
@@ -67,6 +72,8 @@ const MedidaProteccion: React.FC = () => {
             persona procesada cuando se trate de una vivienda común.
           </p>
         </div>
+        </div>
+      
       </IonContent>
     </IonPage>
   );

@@ -8,48 +8,56 @@
 }
 .card-1{
     position: absolute;
-    width: 23em;
-    height: 8.5em;
+    
+    width: auto;
+    height: auto;
+    /*width: 23em;
     /* left: 20px; */
-    /* top: 90px; */
+    /* top: 90px; height: 8.5em;*/
     background: #FBC1FE;
     border-radius: 1em;
     display: table-cell;
     vertical-align: middle;
+    margin-top: 1em
 }
 .card-2{
     position: absolute;
-    width: 23em;
-    height: 8.5em;
-    /* left: 20px; */
+    margin-top: 1em;
+    width: auto;
+    height: auto;
+    /*width: 23em;
+    /* left: 20px;height: 8.5em; */
     top: 14.5em;
     background: #FFC9BD;
     border-radius: 1em;
 }
 .card-3{
     position: absolute;
-    width: 23em;
-    height: 8.8em;
-    left: 20px;
+    margin-top: 1em;
+    width: auto;
+    height: auto;
+    /*width: 23em; left: 20px; height: 8.8em;*/
     top: 23.8em;
     background: #FFC745;
     border-radius: 1em;
 }
 .card-4{
     position: absolute;
-    width: 23em;
-    height: 8.5em;
-    /* left: 20px; */
-    top: 33.4em;
+    margin-top: 1em;
+    width: auto;
+    height: auto;
+    /* left: 20px;width: 23em; height: 8.5em;*/
+    top: 32em;
     background: #FFF9C7;
     border-radius: 1em;
 }
 .card-5{
     position: absolute;
-    width: 23em;
-    height: 8.5em;
-    /* left: 20px; */
-    top: 42.7em;
+    width: auto;
+    height: auto;
+    margin-top: 1em;
+    /* left: 20px; width: 23em; height: 8.5em;*/
+    top: 41.2em;
     background: #CEFFCD;
     border-radius: 1em;
 }
@@ -73,5 +81,12 @@
     line-height: 135%;
     color: rgba(0, 0, 0, 0.82);
     text-align: justify;
-    margin: 0.8em
+    margin: 0.8em;
+    padding: 0.5em;
+    height: auto;
+}
+.container-card{ 
+width: auto;
+max-width: 100%;
+margin-right: 3%;
 }

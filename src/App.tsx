@@ -92,7 +92,7 @@ const App: React.FC = () => {
             ></Route>
             <Route
               exact
-              path="/ruta-del-proceso"
+              path="/ruta-del-proceso/:id"
               component={RutaProceso}
             ></Route>
             <Route

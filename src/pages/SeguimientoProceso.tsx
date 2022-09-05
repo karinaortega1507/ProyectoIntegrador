@@ -9,16 +9,36 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
+  useIonViewDidEnter,
 } from "@ionic/react";
-import { useState } from "react";
+import axios from "axios";
+import React from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "./SeguimientoProceso.css";
+import { getEtapasUsuaria} from "../services/red_apoyo_service";
+import { link } from "fs";
 
+
+interface Etapa{
+  id: number;
+  nombre: string;
+  valor: string;
+}
+interface Proceso{
+  denuncia:{valor: string}
+  ambulatoria:{valor: string};
+  valoracion:{valor: string};
+  proteccion:{valor: string}
+}
+
+let etapas: Proceso[] = [];
 const SeguimientoProceso: React.FC = () => {
+  
   const { name } = useParams<{ name: string }>();
   /*Estados de la etapa de denuncia - 1*/
-  const [EtapaUno, setEtapaUno] = useState<boolean>(true);
-  const [escrita, setEscrita] = useState<boolean>(true);
+  const [EtapaUno, setEtapaUno] = useState<boolean>(false);
+  const [escrita, setEscrita] = useState<boolean>(false);
   const [verbal, setVerbal] = useState<boolean>(false);
   const [selectedEscrita, setSelectedEscrita] = useState<boolean>(false);
   const [selectedVerbal, setSelectedVerbal] = useState<boolean>(false);
@@ -48,16 +68,15 @@ const SeguimientoProceso: React.FC = () => {
   const [recibido, setRecibido] = useState<boolean>(false);
   const [selectedRecibido, setSelectedRecibido] = useState<boolean>(false);
   const [selectedEnProceso, setSelectedEnProceso] = useState<boolean>(false);
-
+  const [etapaActual, setEtapaActual] = useState<string>('');
   const [buttonProgress, setButtonProgress] = useState<boolean>();
+  const [denuncia, setDenuncia] = useState<boolean>(false);;
+  const [ambulatoria, setAmbulatoria] = useState<boolean>(false);;
+  const [valoracion, setValoracion] = useState<boolean>(false);;
+  const [proteccion, setProteccion] = useState<boolean>(false);;
+  const [proceso, setProceso] = useState<boolean>(false);;
+
   const savedEtapa = () => {
-    console.log("escrita " + escrita + " verbal " + verbal);
-    console.log(
-      "ambulatoria si " + ambulatoriaSi + " ambulatoria no " + ambulatoriaNo
-    );
-    console.log("vmedica " + vMedica + " vriesgo " + vRiesgo);
-    console.log("mProteccion " + mProteccion);
-    console.log("en proceso " + enProceso + " recibido " + recibido);
     //resetear los estados a false
     setSelectedEscrita(false);
     setSelectedVerbal(false);
@@ -69,6 +88,51 @@ const SeguimientoProceso: React.FC = () => {
     setSelectedRecibido(false);
     setSelectedEnProceso(false);
   };
+  
+/*
+  const authAxios = axios.create({
+    baseURL: API_URL,
+  });
+  useIonViewDidEnter(async () => {
+    try {
+      //fetch and get CONTACTS of user
+      
+      const result = await authAxios.get(API_URL);
+      console.log(result.data);
+      mostrarEtapas(result.data);  
+    } catch (error) {
+      console.log(error);
+    }
+  });*/
+
+useEffect(() =>{
+  getEtapas();
+},[]);
+
+const getEtapas = async () => {
+  let result = await getEtapasUsuaria();
+  console.log(result.data);
+  if (result.data.length===1) {
+    setEtapaActual("1");
+  }
+  if (result.data.length===2) {
+    setEtapaActual("2");
+  }
+  if (result.data.length===3) {
+    setEtapaActual("3");
+  }
+  if (result.data.length===4) {
+    setEtapaActual("4");
+  }
+  if (result.data.length===5) {
+    setEtapaActual("5");
+  }
+ 
+};
+const link = `ruta-del-proceso/${etapaActual}`;
+console.log(link);
+   
+  
   return (
     <IonPage>
       <IonContent className="ion-padding">
@@ -82,8 +146,7 @@ const SeguimientoProceso: React.FC = () => {
           <p>
             <IonText>Denuncia</IonText>
           </p>
-
-          {escrita && EtapaUno && (
+          {escrita && denuncia && (
             <p className="container">
               <>
                 <IonButton
@@ -106,7 +169,7 @@ const SeguimientoProceso: React.FC = () => {
             </p>
           )}
 
-          {verbal && EtapaUno && (
+          {verbal && denuncia && (
             <p className="container">
               <>
                 <IonButton
@@ -129,7 +192,7 @@ const SeguimientoProceso: React.FC = () => {
             </p>
           )}
 
-          {!EtapaUno && (
+          {!denuncia && (
             <p className="container">
               <>
                 {selectedEscrita ? (
@@ -146,8 +209,7 @@ const SeguimientoProceso: React.FC = () => {
                     onClick={() => {
                       setSelectedEscrita(true);
                       setSelectedVerbal(false);
-                      setEscrita(true);
-                      setVerbal(false);
+                    
                       setButtonProgress(true);
                     }}
                     className="button-option"
@@ -172,8 +234,7 @@ const SeguimientoProceso: React.FC = () => {
                     onClick={() => {
                       setSelectedVerbal(true);
                       setSelectedEscrita(false);
-                      setVerbal(true);
-                      setEscrita(false);
+                      
                       setButtonProgress(true);
                     }}
                     className="button-option"
@@ -191,7 +252,7 @@ const SeguimientoProceso: React.FC = () => {
           <p>
             <IonText>¿Requiere denuncia ambulatoria?</IonText>
           </p>
-          {ambulatoriaSi && EtapaDos && (
+          {ambulatoriaSi && ambulatoria && (
             <p className="container">
               <>
                 <IonButton
@@ -213,7 +274,7 @@ const SeguimientoProceso: React.FC = () => {
               </>
             </p>
           )}
-          {ambulatoriaNo && EtapaDos && (
+          {ambulatoriaNo && ambulatoria && (
             <p className="container">
               <>
                 <IonButton
@@ -236,7 +297,7 @@ const SeguimientoProceso: React.FC = () => {
             </p>
           )}
 
-          {!EtapaDos && (
+          {!ambulatoria && (
             <p className="container">
               <>
                 {selectedSi ? (
@@ -576,7 +637,7 @@ const SeguimientoProceso: React.FC = () => {
             <img className="img-vector" src="assets/icon/Vector.png" alt="" />
             <IonButton
               className="img-mapa"
-              routerLink="/ruta-del-proceso"
+              routerLink={link}
               fill="clear"
             >
               {" "}
