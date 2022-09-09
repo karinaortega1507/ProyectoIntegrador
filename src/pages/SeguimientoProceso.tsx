@@ -1,82 +1,74 @@
 import {
+  IonAlert,
   IonButton,
   IonButtons,
-  IonChip,
   IonContent,
   IonLabel,
   IonMenuButton,
   IonPage,
   IonText,
-  IonTitle,
-  IonToolbar,
-  useIonViewDidEnter,
 } from "@ionic/react";
 import axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "./SeguimientoProceso.css";
-import { getEtapasUsuaria} from "../services/red_apoyo_service";
-import { link } from "fs";
+import { getEtapasUsuaria } from "../services/red_apoyo_service";
 
-
-interface Etapa{
-  id: number;
+interface Etapa {
   nombre: string;
   valor: string;
 }
-interface Proceso{
-  denuncia:{valor: string}
-  ambulatoria:{valor: string};
-  valoracion:{valor: string};
-  proteccion:{valor: string}
-}
 
-let etapas: Proceso[] = [];
 const SeguimientoProceso: React.FC = () => {
-  
-  const { name } = useParams<{ name: string }>();
+  const API_URL = "https://apis-femicides.herokuapp.com/api/v1/procesos/";
   /*Estados de la etapa de denuncia - 1*/
-  const [EtapaUno, setEtapaUno] = useState<boolean>(false);
+
   const [escrita, setEscrita] = useState<boolean>(false);
   const [verbal, setVerbal] = useState<boolean>(false);
   const [selectedEscrita, setSelectedEscrita] = useState<boolean>(false);
   const [selectedVerbal, setSelectedVerbal] = useState<boolean>(false);
 
   /*Estados de la etapa de denuncia ambulatoria - 2*/
-  const [EtapaDos, setEtapaDos] = useState<boolean>(false);
+
   const [ambulatoriaSi, setAmbulatoriaSi] = useState<boolean>(false);
   const [ambulatoriaNo, setAmbulatoriaNo] = useState<boolean>(false);
   const [selectedSi, setSelectedSi] = useState<boolean>(false);
   const [selectedNo, setSelectedNo] = useState<boolean>(false);
 
   /*Estados de la etapa de valoración médica - 3*/
-  const [EtapaTres, setEtapaTres] = useState<boolean>(false);
+
   const [vMedica, setvMedica] = useState<boolean>(false);
   const [vRiesgo, setvRiesgo] = useState<boolean>(false);
   const [selectedMedica, setSelectedMedica] = useState<boolean>(false);
   const [selectedRiesgo, setSelectedRiesgo] = useState<boolean>(false);
 
   /*Estados de la etapa de protección - 4*/
-  const [EtapaCuatro, setEtapaCuatro] = useState<boolean>(false);
+
   const [mProteccion, setmProteccion] = useState<boolean>(false);
   const [selectedProteccion, setSelectedProteccion] = useState<boolean>(false);
 
   /*Estados de la etapa de proceso - 5*/
-  const [EtapaCinco, setEtapaCinco] = useState<boolean>(false);
+
   const [enProceso, setEnProceso] = useState<boolean>(false);
   const [recibido, setRecibido] = useState<boolean>(false);
   const [selectedRecibido, setSelectedRecibido] = useState<boolean>(false);
   const [selectedEnProceso, setSelectedEnProceso] = useState<boolean>(false);
-  const [etapaActual, setEtapaActual] = useState<string>('');
+  const [etapaActual, setEtapaActual] = useState<string>("");
   const [buttonProgress, setButtonProgress] = useState<boolean>();
-  const [denuncia, setDenuncia] = useState<boolean>(false);;
-  const [ambulatoria, setAmbulatoria] = useState<boolean>(false);;
-  const [valoracion, setValoracion] = useState<boolean>(false);;
-  const [proteccion, setProteccion] = useState<boolean>(false);;
-  const [proceso, setProceso] = useState<boolean>(false);;
+  const [denuncia, setDenuncia] = useState<boolean>(false);
+  const [ambulatoria, setAmbulatoria] = useState<boolean>(false);
+  const [valoracion, setValoracion] = useState<boolean>(false);
+  const [proteccion, setProteccion] = useState<boolean>(false);
+  const [proceso, setProceso] = useState<boolean>(false);
 
-  const savedEtapa = () => {
+  /**variables para el manejo de alerts */
+  const [isSent, setIsSent] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
+  const [msmError, setMsmError] = useState<string>("");
+  const [isSentError, setIsSentError] = useState<boolean>(false);
+
+  const unCheckStages = () => {
     //resetear los estados a false
     setSelectedEscrita(false);
     setSelectedVerbal(false);
@@ -88,54 +80,214 @@ const SeguimientoProceso: React.FC = () => {
     setSelectedRecibido(false);
     setSelectedEnProceso(false);
   };
-  
-/*
-  const authAxios = axios.create({
-    baseURL: API_URL,
-  });
-  useIonViewDidEnter(async () => {
-    try {
-      //fetch and get CONTACTS of user
-      
-      const result = await authAxios.get(API_URL);
-      console.log(result.data);
-      mostrarEtapas(result.data);  
-    } catch (error) {
-      console.log(error);
+
+  const saveStage = () => {
+    /**
+     * Si la etapa actual es 1 y no ha seleccionado si requiere o no denuncia
+     * ambulatoria, entonces se envía una alerta de que no puede guradar la etapa
+     * debido a que esta seleccionando una etapa mayor a la que sigue.
+     */
+    if (etapaActual === "1" && !ambulatoria) {
+      if (!selectedSi && !selectedNo) {
+        setMsmError(
+          "Al parecer intentas registrar varias etapas o seleccionaste una etapa no correspondiente"
+        );
+        setIsSentError(true);
+        unCheckStages();
+        unCheckStages();
+      }
     }
-  });*/
 
-useEffect(() =>{
-  getEtapas();
-},[]);
+    /**
+     * Si la etapa actual es 1 y si ha seleccionado si requiere o no denuncia
+     * ambulatoria, pero no ha seleccionado otras etapas se crea la etapa.
+     */
+    if (etapaActual === "1" && !ambulatoria) {
+      if (
+        selectedSi ||
+        (selectedNo &&
+          !selectedMedica &&
+          !selectedRiesgo &&
+          !selectedProteccion &&
+          !selectedRecibido &&
+          !selectedEnProceso)
+      ) {
+        alert("Crear etapa");
+        let newEtapa: Etapa = { nombre: "", valor: "" };
+        if (selectedSi) {
+          newEtapa = { nombre: "Ambulatoria", valor: "Si" };
+        }
+        if (selectedNo) {
+          newEtapa = { nombre: "Ambulatoria", valor: "No" };
+        }
+        createStage(newEtapa);
+      }
+    }
 
-const getEtapas = async () => {
-  let result = await getEtapasUsuaria();
-  console.log(result.data);
-  if (result.data.length===1) {
-    setEtapaActual("1");
-  }
-  if (result.data.length===2) {
-    setEtapaActual("2");
-  }
-  if (result.data.length===3) {
-    setEtapaActual("3");
-  }
-  if (result.data.length===4) {
-    setEtapaActual("4");
-  }
-  if (result.data.length===5) {
-    setEtapaActual("5");
-  }
- 
-};
-const link = `ruta-del-proceso/${etapaActual}`;
-console.log(link);
-   
-  
+    /**
+     * Si la etapa actual es 1 y ya ha marcado si desea requiere o no denunica ambulatoria,
+     * la siguiente etapa corresponde a la valoración ya sea medica o de riesgo, pero si desea
+     * crear una etapa distinta a medica o riesgo, se le informa que no se puede crear la etapa
+     */
+    if (etapaActual === "1" && ambulatoria) {
+      if (!selectedMedica && !selectedRiesgo) {
+        setMsmError(
+          "Al parecer intentas registrar varias etapas o seleccionaste una etapa no correspondiente"
+        );
+        setIsSentError(true);
+        unCheckStages();
+        unCheckStages();
+      }
+      if (selectedMedica || selectedRiesgo) {
+        if (selectedProteccion || selectedRecibido || selectedEnProceso) {
+          setMsmError(
+            "Al parecer intentas registrar varias etapas o seleccionaste una etapa no correspondiente"
+          );
+          setIsSentError(true);
+          unCheckStages();
+          unCheckStages();
+        }
+      }
+
+      /**
+       * si la etapa actual es 1 y ha seleccionado valoracion medica o de riesgo sin haber
+       * seleccionado otras etapas, entonces se crea la etapa
+       */
+      if (selectedMedica || selectedRiesgo) {
+        if (!selectedProteccion && !selectedRecibido && !selectedEnProceso) {
+          alert("crear etapa");
+          let newEtapa: Etapa = { nombre: "", valor: "" };
+          if (selectedMedica) {
+            newEtapa = { nombre: "Valoracion", valor: "Medica" };
+          }
+          if (selectedRiesgo) {
+            newEtapa = { nombre: "Valoracion", valor: "Riesgo" };
+          }
+          createStage(newEtapa);
+        }
+      }
+    }
+  };
+
+  const createStage = (data: Etapa) => {
+    const idUsuaria = localStorage.getItem("userId");
+    axios
+      .post(API_URL + idUsuaria + "/etapas", data)
+      .then((response) => {
+        if (response.data) {
+          setMessage("¡La etapa se ha guardado correctamente!");
+          console.log(response.data);
+          setIsSent(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  };
+
+  useEffect(() => {
+    getEtapas();
+  }, [setEtapaActual]);
+
+  /**
+   * Obtiene el arreglo de las etapas y setea la etapa actual en la que se p
+   * encuentra la usuaria
+   */
+  const getEtapas = async () => {
+    let result = await getEtapasUsuaria();
+    let etapas: Etapa[] = result.data;
+    console.log(etapas);
+    if (etapas.length === 1) setEtapaActual("1");
+
+    if (etapas.length === 2) setEtapaActual("1");
+
+    if (etapas.length === 3) setEtapaActual("2");
+
+    if (etapas.length === 4) setEtapaActual("3");
+
+    if (etapas.length === 5) setEtapaActual("4");
+
+    etapas.forEach((element) => {
+      console.log(element.valor);
+      if (element.valor === "Escrita") {
+        setEscrita(true);
+        setVerbal(false);
+      }
+      if (element.valor === "Verbal") {
+        setVerbal(true);
+        setEscrita(false);
+      }
+      if (element.nombre === "Denuncia") setDenuncia(true);
+
+      if (element.valor === "Si") {
+        setAmbulatoriaSi(true);
+        setAmbulatoriaNo(false);
+      }
+      if (element.valor === "No") {
+        setAmbulatoriaSi(false);
+        setAmbulatoriaNo(true);
+      }
+      if (element.nombre === "Ambulatoria") setAmbulatoria(true);
+
+      if (element.valor === "Medica") {
+        setvMedica(true);
+        setvRiesgo(false);
+      }
+      if (element.valor === "Riesgo") {
+        setvMedica(false);
+        setvRiesgo(true);
+      }
+      if (element.nombre === "Valoracion") setValoracion(true);
+
+      if (element.valor === "Proteccion") {
+        setmProteccion(true);
+        setProteccion(true);
+      }
+      if (element.nombre === "Proteccion") setProteccion(true);
+
+      if (element.valor === "Recibido") {
+        setRecibido(true);
+        setEnProceso(false);
+      }
+      if (element.valor === "Recibido") {
+        setRecibido(false);
+        setEnProceso(true);
+      }
+      if (element.nombre === "Proceso") setProceso(true);
+    });
+
+    console.log(
+      "escrita" +
+        escrita +
+        "ambulatoria si " +
+        ambulatoriaSi +
+        "denuncia" +
+        denuncia +
+        "Ambulatoria" +
+        ambulatoria
+    );
+
+    console.log("verbal", verbal);
+  };
+  const link = `ruta-del-proceso/${etapaActual}`;
+
   return (
     <IonPage>
       <IonContent className="ion-padding">
+        <IonAlert
+          isOpen={isSent}
+          onDidDismiss={() => setIsSent(false)}
+          header={"Etapa registrada"}
+          message={message}
+          buttons={["ok"]}
+        />
+        <IonAlert
+          isOpen={isSentError}
+          onDidDismiss={() => setIsSent(false)}
+          header={"Etapa NO registrada"}
+          message={msmError}
+          buttons={["ok"]}
+        />
         <div>
           <IonButtons slot="start">
             <IonMenuButton color="secondary" />
@@ -209,7 +361,7 @@ console.log(link);
                     onClick={() => {
                       setSelectedEscrita(true);
                       setSelectedVerbal(false);
-                    
+
                       setButtonProgress(true);
                     }}
                     className="button-option"
@@ -234,7 +386,6 @@ console.log(link);
                     onClick={() => {
                       setSelectedVerbal(true);
                       setSelectedEscrita(false);
-                      
                       setButtonProgress(true);
                     }}
                     className="button-option"
@@ -360,7 +511,7 @@ console.log(link);
             <IonText>Tipo de Asistencia Ambulatoria</IonText>
           </p>
 
-          {vMedica && EtapaTres && (
+          {vMedica && valoracion && (
             <p className="container">
               <>
                 <IonButton
@@ -383,7 +534,7 @@ console.log(link);
             </p>
           )}
 
-          {vRiesgo && EtapaTres && (
+          {vRiesgo && valoracion && (
             <p className="container">
               <>
                 <IonButton
@@ -406,7 +557,7 @@ console.log(link);
             </p>
           )}
 
-          {!EtapaTres && (
+          {!valoracion && (
             <p className="container">
               <>
                 {selectedMedica ? (
@@ -469,7 +620,7 @@ console.log(link);
             <IonText>Admisión a trámites</IonText>
           </p>
 
-          {mProteccion && EtapaCuatro && (
+          {mProteccion && proteccion && (
             <p className="container">
               <IonButton
                 className="button-mProteccion ion-text-center"
@@ -482,7 +633,7 @@ console.log(link);
             </p>
           )}
 
-          {!EtapaCuatro && (
+          {!proteccion && (
             <p className="container">
               <>
                 {selectedProteccion ? (
@@ -520,7 +671,7 @@ console.log(link);
           <p>
             <IonText>Medidas de Protección</IonText>
           </p>
-          {recibido && EtapaCinco && (
+          {recibido && proceso && (
             <p className="container">
               <>
                 <IonButton
@@ -543,7 +694,7 @@ console.log(link);
             </p>
           )}
 
-          {enProceso && EtapaCinco && (
+          {enProceso && proceso && (
             <p className="container">
               <>
                 <IonButton
@@ -566,7 +717,7 @@ console.log(link);
             </p>
           )}
 
-          {!EtapaCinco && (
+          {!proceso && (
             <p className="container">
               <>
                 {selectedRecibido ? (
@@ -628,19 +779,14 @@ console.log(link);
           <br />
           <p className="ion-text-center">
             {buttonProgress && (
-              <IonButton onClick={savedEtapa} shape="round" fill="solid">
-                Guardar Estado
+              <IonButton onClick={saveStage} shape="round" fill="solid">
+                Guardar Etapa
               </IonButton>
             )}
           </p>
           <div className="vector-position">
             <img className="img-vector" src="assets/icon/Vector.png" alt="" />
-            <IonButton
-              className="img-mapa"
-              routerLink={link}
-              fill="clear"
-            >
-              {" "}
+            <IonButton className="img-mapa" routerLink={link} fill="clear">
               <img src="assets/icon/mapa.png" alt="" />
             </IonButton>
           </div>
@@ -651,3 +797,18 @@ console.log(link);
 };
 
 export default SeguimientoProceso;
+/*
+  const authAxios = axios.create({
+    baseURL: API_URL,
+  });
+  useIonViewDidEnter(async () => {
+    try {
+      //fetch and get CONTACTS of user
+      
+      const result = await authAxios.get(API_URL);
+      console.log(result.data);
+      mostrarEtapas(result.data);  
+    } catch (error) {
+      console.log(error);
+    }
+  });*/
