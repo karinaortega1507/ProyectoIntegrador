@@ -18,11 +18,7 @@
 
 }
 .button-conect{
-    position: absolute;
-    width: 52vw;
-     height: 5vh; 
-    left: 5rem;
-    top: 21rem;
+    margin-top: 18rem;
 }
 .text-title{
     color:#242323;

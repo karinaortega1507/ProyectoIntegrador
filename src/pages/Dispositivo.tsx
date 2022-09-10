@@ -23,14 +23,12 @@ const Dispositivo: React.FC = () => {
   const API_TWILIO_CALL = `https://apis-femicides.herokuapp.com/api/v1/usuario/call`;
   const { name } = useParams<{ name: string }>();
   const [showToast, setShowToast] = useState(false);
-  //const [showToastAlarm, setShowToastAlarm] = useState(false);
+  
   const [present, onDidDismiss] = useIonLoading();
   const [isConected, setIsConected] = useState(false);
 
   useEffect(() => {
-    // BLE.scan([],5).subscribe((result)=>{
-    //   console.log(result);
-    //});
+   
     BLE.isConnected("D6:C9:72:53:68:90").then(
       () => {
         console.log("connected");
@@ -84,7 +82,7 @@ const Dispositivo: React.FC = () => {
         if (response.data) {
           console.log("¡Tu alerta se ha enviado correctamente!");
           console.log("respuesta de SMS", response.data);
-          //setShowToastAlarm(true);
+         
         }
       })
       .catch((error) => {
@@ -98,7 +96,7 @@ const Dispositivo: React.FC = () => {
         if (response.data) {
           console.log("¡Tu alerta se ha enviado correctamente!");
           console.log("respuesta de WS", response.data);
-          //setShowToastAlarm(true);
+          
         }
       })
       .catch((error) => {
@@ -113,7 +111,7 @@ const Dispositivo: React.FC = () => {
         if (response.data) {
           console.log("¡Tu alerta se ha enviado correctamente!");
           console.log("respuesta de llamada", response.data);
-          //setShowToastAlarm(true);
+          
         }
       })
       .catch((error) => {
@@ -143,7 +141,7 @@ const Dispositivo: React.FC = () => {
               <p className="text">
                 Por favor conectarse vía Bluetooth al dispositivo XIAO BLE SENSE
               </p>
-              <IonButton
+              <div className="button-conect"><IonButton
                 onClick={() => {
                   present({
                     message: "Conectando...",
@@ -153,12 +151,13 @@ const Dispositivo: React.FC = () => {
                   handleOnConnect();
                 }}
                 shape="round"
-                className="button-conect"
+                
                 expand="block"
                 fill="outline"
               >
                 Conectar
-              </IonButton>
+              </IonButton></div>
+              
             </>
           ) : (
             <>
